@@ -58,11 +58,22 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+    --primary-color: #0e1620;
+    --secondary-color: #ff1a81;
+    --third-color-blue: #809fff;
+    --text-color: white;
+    --secondary-text-color: #7e8c9a;
+    --primary-border-color: black;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+:root {
+  --primary-color: #fff8e0;
+  --secondary-color: #f8604f;
+  --text-color: black;
+  --secondary-text-color: #999999;
+  --primary-border-color: black;
+  --biggest-font-size: 3rem;
+  --main-text-size: 1.3rem;
+  --smallest-font-size: 0.8rem
 }
