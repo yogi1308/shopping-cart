@@ -46,10 +46,26 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+@font-face {
+  font-family: 'Outfit';
+  src: url('./assets/Outfit/Outfit-VariableFont_wght.ttf');
+}
+
+:root {
+  --primary-color: #0d0f12; /* also try #101828 */
+  --secondary-color: #ff1a81;
+  --third-color-blue: #809fff;
+  --text-color: white;
+  --secondary-text-color: #7e8c9a;
+  --primary-border-color: black;
+  --biggest-font-size: 3rem;
+  --main-text-size: 1.3rem;
+  --smallest-font-size: 0.8rem;
+  --primary-font-family: 'Outfit', Arial, Helvetica, sans-serif;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
     --primary-color: #fff8e0;
     --secondary-color: #f8604f;
     --text-color: black;
@@ -58,14 +74,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-:root {
-  --primary-color: #12151a;
-  --secondary-color: #ff1a81;
-  --third-color-blue: #809fff;
-  --text-color: white;
-  --secondary-text-color: #7e8c9a;
-  --primary-border-color: black;
-  --biggest-font-size: 3rem;
-  --main-text-size: 1.3rem;
-  --smallest-font-size: 0.8rem
+html {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  min-width: 100vw;
+  font-family: var(--primary-font-family);
 }
