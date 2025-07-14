@@ -3,7 +3,7 @@ import '../../index.css'
 import ShoeIcon from '../../assets/images/ShoeIcon.jsx'
 import SearchIcon from '../../assets/images/SearchIcon.jsx'
 import ShoppingCartIcon from '../../assets/images/ShoppingCartIcon.jsx'
-import NavLinks from './NavLinks.jsx'
+import {NavLinks, Searchbox} from './NavLinks.jsx'
 import { useState } from 'react'
 
 export default function Navbar(props) {
@@ -21,12 +21,12 @@ export default function Navbar(props) {
                     <h1 className='big-text' >StockXYZ</h1>
                 </div>
                 {!showSearch ? <NavLinks /> 
-                : <input type="text" name="search" className="search" autoFocus="true" />
+                : <Searchbox setShowSearch={setShowSearch} />
                 }
                 <div className="horizontal-flexbox">
                     <div className="icons horizontal-flexbox">
                         <span onClick={() => {searchIconClicked()}}>
-                            <SearchIcon />
+                            <SearchIcon setShowSearch={setShowSearch} />
                         </span>
                         <span className="cart">
                             <ShoppingCartIcon />
