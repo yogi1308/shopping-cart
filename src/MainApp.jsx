@@ -7,7 +7,7 @@ export default function MainApp() {
   const [theme, setTheme] = useState('');
   useEffect(() => {
     if (theme === '') {setTheme(localStorage?.getItem('theme')); return}
-    console.log('stored item', localStorage.getItem('theme'), 'theme', theme)
+    localStorage.setItem('theme', theme)
     if (theme === "🌙" || (theme === "" && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setTheme('🌙');
       document.documentElement.className = 'dark';
