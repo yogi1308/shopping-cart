@@ -52,11 +52,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :root {
-  --primary-color: #0d0f12; /* also try #101828 */
-  --secondary-color: #809fff; /* also try pink #ff1a81;*/
-  --accent-color: #ff1a81;
-  --text-color: white;
-  --secondary-text-color: #7e8c9a;
+  --primary-color: #fff8e0;
+  --secondary-color: #f8604f;
+  --accent-color: #809fff;
+  --text-color: black;
+  --secondary-text-color: #999999;
   --primary-border-color: black;
   --biggest-font-size: 2rem;
   --main-text-size: 1.3rem;
@@ -64,15 +64,13 @@ h1, h2, h3, h4, h5, h6 {
   --primary-font-family: 'Outfit', Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-color: #fff8e0;
-    --secondary-color: #f8604f;
-    --accent-color: #809fff;
-    --text-color: black;
-    --secondary-text-color: #999999;
-    --primary-border-color: black;
-  }
+:root.dark {
+  --primary-color: #0d0f12; /* also try #101828 */
+  --secondary-color: #809fff; /* also try pink #ff1a81;*/
+  --accent-color: #ff1a81;
+  --text-color: white;
+  --secondary-text-color: #7e8c9a;
+  --primary-border-color: black;
 }
 
 html {
@@ -87,14 +85,13 @@ html {
 
 .big-text {
   font-size: var(--biggest-font-size);
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .icon{
   fill: var(--text-color);
   height: 2rem;
   width: auto;
-  
   transition: all 0.3s;
 }
 

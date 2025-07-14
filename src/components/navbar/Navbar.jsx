@@ -1,12 +1,12 @@
 import './navbar.css'
 import '../../index.css'
-import logo from '../../assets/images/shopping-outline.svg'
+import ShoeIcon from '../../assets/images/ShoeIcon.jsx'
 import SearchIcon from '../../assets/images/SearchIcon.jsx'
 import ShoppingCartIcon from '../../assets/images/ShoppingCartIcon.jsx'
 import NavLinks from './NavLinks.jsx'
 import { useState } from 'react'
 
-export default function Navbar() {
+export default function Navbar(props) {
     const [showSearch, setShowSearch] = useState(false)
 
     function searchIconClicked() {
@@ -17,7 +17,7 @@ export default function Navbar() {
         <>
             <nav className='horizontal-flexbox' >
                 <div className="name-and-logo horizontal-flexbox">
-                    <img src={logo} style={{transform: "scaleX(-1)"}}></img>
+                    <ShoeIcon />
                     <h1 className='big-text' >StockXYZ</h1>
                 </div>
                 {!showSearch ? <NavLinks /> 
@@ -31,6 +31,9 @@ export default function Navbar() {
                         <span className="cart">
                             <ShoppingCartIcon />
                         </span>
+                        <span className="theme pointer" onClick={() => {
+                            props.setTheme(prev => prev === "🔆" ? "🌙" : "🔆")
+                        }} >{props.theme}</span>
                     </div>
                     <button className="login avg-button pointer">Login</button>
                 </div>
