@@ -18,7 +18,7 @@ export default function Navbar(props) {
             <nav className='horizontal-flexbox' >
                 <div className="name-and-logo horizontal-flexbox">
                     <ShoeIcon />
-                    <h1 className='big-text' >StockXYZ</h1>
+                    <h1 className='big-text biggest-font-weight' >StockXYZ</h1>
                 </div>
                 {!showSearch ? <NavLinks /> 
                 : <Searchbox setShowSearch={setShowSearch} />

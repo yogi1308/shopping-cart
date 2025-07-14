@@ -59,8 +59,13 @@ h1, h2, h3, h4, h5, h6 {
   --secondary-text-color: #999999;
   --primary-border-color: black;
   --biggest-font-size: 2rem;
+  --second-biggest-font-size: 1.7rem;
+  --third-biggest-font-size: 1.5rem;
   --main-text-size: 1.3rem;
   --smallest-font-size: 0.8rem;
+  --biggest-font-weight: 450;
+  --second-biggest-font-weight: 400;
+  --third-biggest-font-weight: 300;
   --primary-font-family: 'Outfit', Arial, Helvetica, sans-serif;
   transition: all 0.3s;
 }
@@ -86,7 +91,26 @@ html {
 
 .big-text {
   font-size: var(--biggest-font-size);
-  font-weight: 300;
+}
+
+.third-biggest-font-size{
+  font-size: var(--third-biggest-font-size);
+}
+
+.second-biggest-font-size{
+  font-size: var(--second-biggest-font-size);
+}
+
+.biggest-font-weight {
+  font-weight: var(--biggest-font-weight);
+}
+
+.third-biggest-font-weight {
+  font-weight: var(--third-biggest-font-weight);
+}
+
+.second-biggest-font-weight {
+  font-weight: var(--second-biggest-font-weight);
 }
 
 .icon{
@@ -104,6 +128,14 @@ html {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.vertical-flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 .avg-button {
