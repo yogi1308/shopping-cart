@@ -1,12 +1,12 @@
 .sneaker-otd {
     border: 1.5px solid var(--text-color);
-    margin: 0rem 3rem;
+    margin: 1rem 3rem;
     padding: 1rem;
 }
 
 .card {padding: 0rem 3rem 1rem 3rem;}
 
-img {min-width: 35vw; border-radius: 10px; border: 1.5px solid var(--text-color);}
+.sneaker-otd-img {min-width: 35vw; border-radius: 10px; border: 1.5px solid var(--text-color);}
 
 .sneaker-otd-image {
     border-radius: 10px;
@@ -27,13 +27,16 @@ img {min-width: 35vw; border-radius: 10px; border: 1.5px solid var(--text-color)
     border: 1.5px solid var(--text-color);
 }
 
-.card-text {
-    align-self: flex-start;
+.card-text.vertical-flexbox {
     align-items: flex-start;
 }
 
-.more-info-cards{
-    margin: 3rem;
+.more-info-cards.horizontal-flexbox {
+    margin: 2rem 3rem;
+    align-items: stretch;
+}
+
+.cta.horizontal-flexbox {
     align-items: stretch;
 }
 

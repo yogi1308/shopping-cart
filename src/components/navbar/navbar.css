@@ -4,6 +4,10 @@ nav {
     height: auto;
 }
 
+.nav-links > * {
+    color: var(--text)
+}
+
 .shopping-cart-icon {
     width: 1.75rem;
     aspect-ratio: 1/1;
@@ -20,11 +24,7 @@ nav {
 }
 
 .search {
-    outline: none; 
     border: none;
-    background-color: var(--primary-color);
-    text-align: center;
-    color: var(--text-color);
     width: calc(100% - 0.5rem - 1.5rem);
 }
 

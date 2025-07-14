@@ -1,0 +1,93 @@
+.shopGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 1rem 2rem;
+}
+
+.card {
+    border: 1.5px solid var(--text-color);
+    border-radius: 10px;
+    padding: 0px;
+    background-color: var(--primary-color);
+}
+
+.card:hover {
+      box-shadow: 10px 10px var(--secondary-color), 10px 10px 0px 1.5px var(--text-color);
+}
+
+.price {
+    color: var(--secondary-color);
+}
+
+.card > img {
+    border-radius: 7px 7px 0px 0px;
+    border-bottom: 1.5px solid var(--text-color);
+}
+
+.sneakerCardInfo {
+    padding: 1rem;
+    padding-top: 0px;
+}
+
+p.price::first-letter {
+    transform: scale(1.2);
+}
+
+.shoeImg {
+    max-width: 45vw;
+    border: 1.5px solid var(--text-color);
+    transform: translateY(0.5rem);
+}
+
+.shoe {
+    margin: 2rem;
+    align-items: flex-start;
+}
+
+.shoeCardInfo {
+    padding: 0px;
+    align-items: start;
+}
+
+.addToCart {align-items: stretch;}
+
+.shoeInfo {align-items: flex-start;}
+
+.shoeSize {
+    border-top: 1.5px solid var(--text-color);
+    border-bottom: 1.5px solid var(--text-color);
+    padding: 1rem 0rem;
+}
+
+.sizes > *{
+    border: 1.5px solid var(--text-color);
+    min-width: 1.5rem;
+    min-height: .5rem;
+    text-align: center;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    width: 5rem;
+}
+
+.number > span {color: var(--secondary-color); font-size: 1.8rem; cursor: pointer;}
+.number {gap: 0.2rem; border: 1.5px solid var(--secondary-color); border-radius: 5px; padding: 0px 0.8rem;}
+
+
+select {
+    outline: none;
+    background-color: #13161a;
+    text-align: center;
+    color: var(--text-color);
+    border-radius: 5px; 
+    cursor: pointer;
+    outline: 1.5px solid var(--secondary-color);
+}
+
+option {
+    background-color: var(--primary-color);
+}

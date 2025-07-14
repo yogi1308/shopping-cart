@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 export function NavLinks() {
     return(
         <div className="nav-links horizontal-flexbox appear-animation">
-            <span className="home underline pointer">Home</span>
-            <span className="shop underline pointer">Shop</span>
+            <Link to="../" style={{ textDecoration: 'none' }} className="home underline pointer">Home</Link>
+            <Link to="../shop" style={{ textDecoration: 'none' }} className="shop underline pointer">Shop</Link>
         </div>
     )
 }

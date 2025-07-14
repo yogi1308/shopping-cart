@@ -162,7 +162,7 @@ html {
 
 .avg-button:hover {
   transform: translate(-10px, -10px);
-  box-shadow: 10px 10px var(--text-color);
+  box-shadow: 10px 10px var(--secondary-text-color), 10px 10px 0px 1.5px var(--text-color);
 }
 
 .icon:hover {
@@ -253,4 +253,24 @@ html, body, #root {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-color);
+}
+
+.link {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+input {
+  outline: none; 
+    border: 1.5px solid var(--secondary-color);
+    background-color: var(--primary-color);
+    text-align: center;
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
