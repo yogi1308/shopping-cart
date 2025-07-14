@@ -1,0 +1,22 @@
+nav {
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    height: auto;
+}
+
+.shopping-cart-icon {
+    width: 1.6rem;
+    aspect-ratio: 1/1;
+}
+
+.search {
+    flex-grow: 2;
+    background-color: var(--primary-color);
+    outline: 1.5px solid var(--secondary-color);
+    border: 0px;
+    border-radius: 5px;
+    color: var(--text-color);
+    padding: 0.2rem ;
+    text-align: center;
+    animation: expand 0.2s ease-in 0s 1 forwards;
+}

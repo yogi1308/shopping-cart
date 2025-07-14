@@ -53,12 +53,11 @@ h1, h2, h3, h4, h5, h6 {
 
 :root {
   --primary-color: #0d0f12; /* also try #101828 */
-  --secondary-color: #ff1a81;
-  --third-color-blue: #809fff;
+  --secondary-color: #809fff; /* also try pink #ff1a81;*/
   --text-color: white;
   --secondary-text-color: #7e8c9a;
   --primary-border-color: black;
-  --biggest-font-size: 3rem;
+  --biggest-font-size: 2rem;
   --main-text-size: 1.3rem;
   --smallest-font-size: 0.8rem;
   --primary-font-family: 'Outfit', Arial, Helvetica, sans-serif;
@@ -80,4 +79,112 @@ html {
   min-height: 100vh;
   min-width: 100vw;
   font-family: var(--primary-font-family);
+  font-size: var(--main-text-size);
+  font-weight: 300;
+}
+
+.big-text {
+  font-size: var(--biggest-font-size);
+  font-weight: 200;
+}
+
+.icon{
+  fill: var(--text-color);
+  height: 2rem;
+  width: auto;
+  
+  transition: all 0.3s;
+}
+
+.logo {
+  fill: var(--secondary-color);
+}
+
+.horizontal-flexbox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avg-button {
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  border: 1.5px solid var(--text-color);
+  padding: 0.5rem 2rem;
+  
+  transition: all 0.2s linear 0.1s;
+}
+
+.avg-button:hover {
+  transform: translate(-10px, -10px);
+  box-shadow: 10px 10px var(--text-color);
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+nav {
+  height: 80px;
+  padding: 0 2rem;
+  justify-content: space-between;
+}
+
+.underline {
+  position: relative;
+  background-color: var(--primary-color);
+  
+}
+
+.underline::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  z-index: -1;
+  width: 0;
+  transition: width 0.3s;
+}
+
+.underline:hover::after {
+  transform: scaleX(1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 98%;
+}
+
+.pointer, svg {
+  cursor: pointer;
+}
+
+.appear-animation {
+  animation: appear-forward 0.2s ease-in 0s 1;
+}
+
+@keyframes appear-forward {
+    0% {
+        transform: scale(0.5) translateY(-10px);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes expand {
+    0% {
+        transform-origin: right;
+        transform: scaleX(0);
+    }
+    100% {
+        transform-origin: right;
+        transform: scaleX(1)
+    }
 }
