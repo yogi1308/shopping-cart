@@ -54,6 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 :root {
   --primary-color: #0d0f12; /* also try #101828 */
   --secondary-color: #809fff; /* also try pink #ff1a81;*/
+  --accent-color: #ff1a81;
   --text-color: white;
   --secondary-text-color: #7e8c9a;
   --primary-border-color: black;
@@ -67,6 +68,7 @@ h1, h2, h3, h4, h5, h6 {
   :root {
     --primary-color: #fff8e0;
     --secondary-color: #f8604f;
+    --accent-color: #809fff;
     --text-color: black;
     --secondary-text-color: #999999;
     --primary-border-color: black;

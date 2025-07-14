@@ -11,7 +11,6 @@ export default function Navbar() {
 
     function searchIconClicked() {
         setShowSearch(prev => prev = !prev)
-        console.log(showSearch)
     }
 
     return(
@@ -26,10 +25,12 @@ export default function Navbar() {
                 }
                 <div className="horizontal-flexbox">
                     <div className="icons horizontal-flexbox">
-                        <span onClick={() => {console.log('click');searchIconClicked()}}>
+                        <span onClick={() => {searchIconClicked()}}>
                             <SearchIcon />
                         </span>
-                        <ShoppingCartIcon />
+                        <span className="cart">
+                            <ShoppingCartIcon />
+                        </span>
                     </div>
                     <button className="login avg-button pointer">Login</button>
                 </div>

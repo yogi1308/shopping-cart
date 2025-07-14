@@ -20,3 +20,23 @@ nav {
     text-align: center;
     animation: expand 0.2s ease-in 0s 1 forwards;
 }
+
+.cart {
+    position: relative;
+}
+
+.cart::after {
+    content: '10';
+    text-align: center;
+    width: 100%;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 10;
+    transform-origin: top right;
+    transform: scale(0.5);
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    font-weight: 600;
+}
