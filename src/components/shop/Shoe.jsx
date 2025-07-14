@@ -1,4 +1,3 @@
-import '../../index.css'
 import styles from './shop.module.css'
 
 export default function Shoe() {
@@ -26,7 +25,7 @@ export default function Shoe() {
                     </div>
                 </div>
                 <div className={`${styles.addToCart} horizontal-flexbox`}>
-                    <div className={`${styles.number} horizontal-flexbox`}><span>-</span><input type="number" /><span>+</span></div>
+                    <div className={`${styles.number} horizontal-flexbox`}><span>-</span><input type="number" defaultValue="1" /><span>+</span></div>
                     <button className="avg-button">Add To Cart ↗</button>
                 </div>
             </div>

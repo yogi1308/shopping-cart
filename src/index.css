@@ -156,7 +156,7 @@ html {
   border-radius: 5px;
   border: 1.5px solid var(--text-color);
   padding: 0.5rem 2rem;
-  
+  cursor: pointer;
   transition: all 0.2s linear 0.1s;
 }
 

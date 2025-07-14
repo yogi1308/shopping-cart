@@ -1,5 +1,4 @@
 import './navbar.css'
-import '../../index.css'
 import ShoeIcon from '../../assets/images/ShoeIcon.jsx'
 import SearchIcon from '../../assets/images/SearchIcon.jsx'
 import ShoppingCartIcon from '../../assets/images/ShoppingCartIcon.jsx'
@@ -32,7 +31,7 @@ export default function Navbar(props) {
                             <ShoppingCartIcon />
                         </span>
                         <span className="theme pointer" onClick={() => {
-                            props.setTheme(prev => prev === "🔆" ? "🌙" : "🔆")
+                            props.setTheme(prev => prev === "🔆" ? "🌙" : "🔆");
                         }} >{props.theme}</span>
                     </div>
                     <button className="login avg-button pointer">Login</button>

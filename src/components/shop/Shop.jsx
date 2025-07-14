@@ -1,5 +1,4 @@
 import ShopCards from './ShopCards'
-import '../../index.css'
 import styles from './shop.module.css'
 
 const num = 20

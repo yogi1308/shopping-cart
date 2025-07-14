@@ -1,4 +1,3 @@
-import '../../index.css'
 import styles from './shop.module.css'
 import Shoe from './Shoe'
 import { Link } from "react-router-dom";
