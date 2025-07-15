@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import Navbar from './components/navbar/Navbar';
+import {getData} from './api/getData.js' 
 
 export default function MainApp() {
   const [theme, setTheme] = useState('');
@@ -22,6 +23,10 @@ export default function MainApp() {
   }, [theme]);
 
   const [currPage, setCurrPage] = useState('')
+  useEffect(() => {
+    if (currPage === 'shop')
+      getData('mostPopular')
+  }, [currPage])
 
   return (
     <BrowserRouter>

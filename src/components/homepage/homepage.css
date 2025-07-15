@@ -4,7 +4,7 @@
     padding: 1rem;
 }
 
-.card {padding: 0rem 3rem 1rem 3rem;}
+.card {padding: 0rem 3rem 1rem calc(3rem - 20px);}
 
 .sneaker-otd-img {min-width: 35vw; border-radius: 10px; border: 1.5px solid var(--text-color);}
 

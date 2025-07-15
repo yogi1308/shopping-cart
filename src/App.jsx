@@ -5,7 +5,7 @@ import Shoe from './components/shop/Shoe';
 import {useEffect, useState} from 'react'
 import {getData} from './api/getData.js'
 
-export default function App() {
+export default function App(props) {
     let dateObject = new Date();
     let year = dateObject.getFullYear();
     let month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
@@ -54,7 +54,7 @@ export default function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Homepage sotd={sotd} />} />
+                <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/shop/shoe" element={<Shoe />} />
                 {/* Add other routes here */}

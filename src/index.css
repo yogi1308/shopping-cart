@@ -35,9 +35,6 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-p {
-  text-wrap: pretty;
-}
 h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
@@ -67,7 +64,7 @@ html, body, #root {
   --biggest-font-size: 2rem;
   --second-biggest-font-size: 1.7rem;
   --third-biggest-font-size: 1.5rem;
-  --main-text-size: 1.3rem;
+  --main-text-size: 1.1rem;
   --smallest-font-size: 0.8rem;
   --biggest-font-weight: 450;
   --second-biggest-font-weight: 400;
@@ -242,7 +239,7 @@ html, body, #root {
 
 ::-webkit-scrollbar {
   width: 3px;
-  height: 0px;
+  height: 3px;
 }
 
 ::-webkit-scrollbar-thumb {

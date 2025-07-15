@@ -14,8 +14,8 @@ export default function Homepage(props) {
                         <h6 className="sneaker-of-the-day-name third-biggest-font-size second-biggest-font-weight">{props.sotd.sotdName}</h6>
                         <p>{props.sotd?.sotdDesc}</p>
                         <div className="cta horizontal-flexbox">
-                            <Link to="../shop"><button className="avg-button pointer">Explore More</button></Link>
-                            <Link to="/shop/shoe"><button className="avg-button pointer">Check This Out</button></Link>
+                            <Link to="../shop" onClick={() => {props.setCurrPage('shop')}}><button className="avg-button pointer">Explore More</button></Link>
+                            <Link to="/shop/shoe" ><button className="avg-button pointer">Check This Out</button></Link>
                         </div>
                     </div>
                     <div className="sneaker-otd-image pointer"><img className='sneaker-otd-img' src={props.sotd?.sotdImg} alt="" srcset="" /></div>
