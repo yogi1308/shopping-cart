@@ -35,7 +35,7 @@ export default function App() {
                     setSotd(sotdDataParsed)
                     localStorage.setItem('sotd', JSON.stringify(sotdDataParsed))
                 }
-                else {console.log('date not changed'); setSotd(JSON.parse(localStorage.getItem('sotd')))}
+                else {console.log('date not changed'); setTimeout(() => {setSotd(JSON.parse(localStorage.getItem('sotd')))}, 5000) ;}
             }
             else {
                 const currentDate = new Date();
