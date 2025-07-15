@@ -21,10 +21,12 @@ export default function MainApp() {
     }
   }, [theme]);
 
+  const [currPage, setCurrPage] = useState('')
+
   return (
     <BrowserRouter>
-      <Navbar theme={theme} setTheme={setTheme} />
-      <App />
+      <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} />
+      <App  setCurrPage={setCurrPage} />
     </BrowserRouter>
   );
 }

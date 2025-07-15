@@ -54,7 +54,7 @@ export default function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Homepage sotd={sotd} setCurrPage={setCurrPage} />} />
+                <Route path="/" element={<Homepage sotd={sotd} />} />
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/shop/shoe" element={<Shoe />} />
                 {/* Add other routes here */}

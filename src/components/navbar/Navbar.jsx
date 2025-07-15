@@ -19,7 +19,7 @@ export default function Navbar(props) {
                     <ShoeIcon />
                     <h1 className='big-text biggest-font-weight' >StockXYZ</h1>
                 </div>
-                {!showSearch ? <NavLinks /> 
+                {!showSearch ? <NavLinks setCurrPage={props.setCurrPage} /> 
                 : <Searchbox setShowSearch={setShowSearch} />
                 }
                 <div className="horizontal-flexbox">
