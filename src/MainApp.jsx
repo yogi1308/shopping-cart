@@ -23,15 +23,26 @@ export default function MainApp() {
   }, [theme]);
 
   const [currPage, setCurrPage] = useState('')
+  const [mostPopular, setMostPopular] = useState('')
   useEffect(() => {
-    if (currPage === 'shop')
-      getData('mostPopular')
+    localStorage.setItem('mostPopular', mostPopular)
+  }, [mostPopular])
+
+  useEffect(() => {
+    if (currPage === 'shop') {
+      async function fetchMostPopular() {
+        const mostPopularData = await getData('mostPopular')
+        setMostPopular(mostPopularData)
+        return mostPopularData
+      }
+      console.log(fetchMostPopular())
+    }
   }, [currPage])
 
   return (
     <BrowserRouter>
       <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} />
-      <App  setCurrPage={setCurrPage} />
+      <App  setCurrPage={setCurrPage} mostPopular={mostPopular} />
     </BrowserRouter>
   );
 }
