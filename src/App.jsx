@@ -15,7 +15,6 @@ export default function App() {
     // Set initial date in localStorage if not present
     localStorage.getItem('date') === '' && localStorage.setItem('date', formattedDate);
 
-
     const [date, setDate] = useState(localStorage.getItem('date'));
     const [sotd, setSotd] = useState('')
 
@@ -35,7 +34,7 @@ export default function App() {
                     setSotd(sotdDataParsed)
                     localStorage.setItem('sotd', JSON.stringify(sotdDataParsed))
                 }
-                else {console.log('date not changed'); setTimeout(() => {setSotd(JSON.parse(localStorage.getItem('sotd')))}, 5000) ;}
+                else {console.log('date not changed'); setSotd(JSON.parse(localStorage.getItem('sotd')));}
             }
             else {
                 const currentDate = new Date();
@@ -51,10 +50,11 @@ export default function App() {
         }
         checkDateAndFetch()
     }, [date]);
+
     return (
         <>
             <Routes>
-                <Route path="/" element={<Homepage sotd={sotd} />} />
+                <Route path="/" element={<Homepage sotd={sotd} setCurrPage={setCurrPage} />} />
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/shop/shoe" element={<Shoe />} />
                 {/* Add other routes here */}

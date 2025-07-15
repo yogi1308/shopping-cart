@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    padding: 1rem 2rem;
+    padding: 1rem 3rem;
+    padding-top: 0.5rem;
 }
 
 .card {
@@ -91,4 +92,8 @@ select {
 
 option {
     background-color: var(--primary-color);
+}
+
+.shopSection {
+    padding-left: 3rem;
 }
