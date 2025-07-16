@@ -28,7 +28,7 @@ export function SkeletonCard() {
                     <div className={`${styles.bigText}`}></div>
                     <div className={`${styles.bigText}`}></div>
                 </div>
-                <div className={`${styles.bigText}`}></div>
+                <div className={`horizontal-flexbox`}>$<div className={` ${styles.bigText}`}></div></div>
             </div>
         </div>
     )

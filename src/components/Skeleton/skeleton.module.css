@@ -98,7 +98,7 @@ div.paraText > span:last-child {
 .skeletonShopCard {
     border: 2px solid var(--text-color);
     border-radius: 15px;
-    min-width: 20rem;
+    min-width: 17rem;
 }
 
 .cardImg{
@@ -111,7 +111,7 @@ div.paraText > span:last-child {
 
 .shopCardInfo{
     padding: 1rem;
-    gap: 2rem;
+    align-items: flex-start;
 }
 
 .shopCardName {
@@ -120,5 +120,12 @@ div.paraText > span:last-child {
 }
 
 .shopCardName >div:nth-last-child(1) {
-    width: 60%;
+    width: 80%;
+}
+
+.shopCardInfo > div:nth-last-child(1) {
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    min-width: 4rem;
+    gap: 5px;
 }
