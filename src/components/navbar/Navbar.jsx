@@ -20,7 +20,7 @@ export default function Navbar(props) {
                     <h1 className='big-text biggest-font-weight' >StockXYZ</h1>
                 </div>
                 {!showSearch ? <NavLinks setCurrPage={props.setCurrPage} /> 
-                : <Searchbox setShowSearch={setShowSearch} />
+                : <Searchbox setShowSearch={setShowSearch} setSearchResults={props.setSearchResults} />
                 }
                 <div className="horizontal-flexbox">
                     <div className="icons horizontal-flexbox">

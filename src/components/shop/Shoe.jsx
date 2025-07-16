@@ -9,7 +9,7 @@ export default function Shoe() {
                     <p>{JSON.parse(localStorage.getItem('selectedShoe')).shoeName}</p>
                     <p className={`${styles.price}`}>${JSON.parse(localStorage.getItem('selectedShoe'))?.retailPrice || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice?.goat || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice?.stockX || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice.flightClub || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice.stadiumGoods}</p>
                 </div>
-                <div className="shoe-desc">{JSON.parse(localStorage.getItem('selectedShoe'))?.description} No Product Description Found</div>
+                <div className="shoe-desc">{JSON.parse(localStorage.getItem('selectedShoe'))?.description || 'No Product Description Found'}</div>
                 <div className={`${styles.shoeSize}`}>
                     <div className={`${styles.chooseSize} horizontal-flexbox`}>
                         Choose Size

@@ -27,7 +27,7 @@ export default function MainApp() {
   const [currPage, setCurrPage] = useState('')
   const [mostPopular, setMostPopular] = useState('')
   useEffect(() => {
-    localStorage.setItem('mostPopular', mostPopular)
+    localStorage.setItem('mostPopular', JSON.stringify(mostPopular))
   }, [mostPopular])
 
   useEffect(() => {
@@ -43,19 +43,21 @@ export default function MainApp() {
 
   const location = useLocation();
 
-useEffect(() => {
-  if (location.pathname === '/shop') {
-    setCurrPage('shop');
-  } else if (location.pathname === '/') {
-    setCurrPage('home');
-  }
-  // Add more routes as needed
-}, [location.pathname]);
+  useEffect(() => {
+    if (location.pathname === '/shop') {
+      setCurrPage('shop');
+    } else if (location.pathname === '/') {
+      setCurrPage('home');
+    }
+    // Add more routes as needed
+  }, [location.pathname]);
+
+  const [searchResults, setSearchResults] = useState('')
 
   return (
       <>
-        <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} />
-        <App setCurrPage={setCurrPage} mostPopular={mostPopular} />
+        <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />
+        <App setCurrPage={setCurrPage} mostPopular={mostPopular} searchResults={searchResults} />
       </>
   );
 }

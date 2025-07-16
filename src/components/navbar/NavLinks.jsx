@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {getData} from '../../api/getData.js'
 
 export function NavLinks(props) {
     return(
@@ -10,10 +11,21 @@ export function NavLinks(props) {
 }
 
 export function Searchbox(props) {
+    const navigate = useNavigate();
     return(
         <div className="searchbox">
-            <input type="text" name="search" className="search" autoFocus="true" />
-            <span className="close-search pointer" onClick={() => {props.setShowSearch(prev => prev = !prev); console.log('click')}} >X</span>
+            <input type="text" name="search" className="search" autoFocus={true} 
+                onKeyDown={async(e) => {
+                    if (e.key === 'Enter') {
+                        const value = document.querySelector('input.search').value;
+                        navigate(`/search/${encodeURIComponent(value)}/1`);
+                        let results = await getData('search', value);
+                        results = results.data
+                        props.setSearchResults(results);
+                    }
+                }} 
+            />
+            <span className="close-search pointer" onClick={() => {props.setShowSearch(prev => !prev); console.log('click')}} >X</span>
         </ div>
     )
 }

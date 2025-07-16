@@ -4,6 +4,7 @@ import Shop from './components/shop/Shop';
 import Shoe from './components/shop/Shoe';
 import {useEffect, useState} from 'react'
 import {getData} from './api/getData.js'
+import {SearchResults} from './components/shop/SearchResults.jsx'
 
 export default function App(props) {
     let dateObject = new Date();
@@ -57,6 +58,7 @@ export default function App(props) {
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
                 <Route path="/shop" element={<Shop mostPopular={props.mostPopular} />} />
                 <Route path="/shop/:shoe" element={<Shoe />} />
+                <Route path="/search/:shoe/:page" element={<SearchResults searchResults={props.searchResults} />} />
                 {/* Add other routes here */}
             </Routes>
         </>
