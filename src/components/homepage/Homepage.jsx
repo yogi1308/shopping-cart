@@ -1,6 +1,7 @@
 import './homepage.css'
 import {SotdSkeleton} from '../Skeleton/SotdSkeleton'
 import { Link } from "react-router-dom";
+import noImageFound from '../../assets/images/no-image-found1.png'
 
 export default function Homepage(props) {
 
@@ -18,7 +19,7 @@ export default function Homepage(props) {
                             <Link to={`shop/${encodeURIComponent(props.sotd.sotdName)}`} onClick={() => localStorage.setItem('selectedShoe', props.sotd.sotdAllData)} ><button className="avg-button pointer">Check This Out</button></Link>
                         </div>
                     </div>
-                    <div className="sneaker-otd-image pointer"><img className='sneaker-otd-img' src={props.sotd?.sotdImg} alt="" srcset="" /></div>
+                    <div className="sneaker-otd-image pointer"><img className='sneaker-otd-img' src={props.sotd?.sotdImg || props.sotd?.featured_image || noImageFound} alt="" srcset="" /></div>
                 </div>
             </div>)}
             <div className="more-info-cards horizontal-flexbox">

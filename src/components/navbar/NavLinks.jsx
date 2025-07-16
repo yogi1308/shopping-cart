@@ -18,6 +18,7 @@ export function Searchbox(props) {
                 onKeyDown={async(e) => {
                     if (e.key === 'Enter') {
                         const value = document.querySelector('input.search').value;
+                        props.setShowSearch(false)
                         navigate(`/search/${encodeURIComponent(value)}/1`);
                         let results = await getData('search', value);
                         results = results.data

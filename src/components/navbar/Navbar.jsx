@@ -4,12 +4,30 @@ import SearchIcon from '../../assets/images/SearchIcon.jsx'
 import ShoppingCartIcon from '../../assets/images/ShoppingCartIcon.jsx'
 import {NavLinks, Searchbox} from './NavLinks.jsx'
 import { useState } from 'react'
+import {getData} from '../../api/getData.js'
+import { useNavigate } from "react-router-dom";
+
 
 export default function Navbar(props) {
     const [showSearch, setShowSearch] = useState(false)
+    const navigate = useNavigate();
 
     function searchIconClicked() {
-        setShowSearch(prev => prev = !prev)
+        if (showSearch) {
+            // If search is open, fetch and then close
+            async function fetchData() {
+                const value = document.querySelector('input.search').value;
+                navigate(`/search/${encodeURIComponent(value)}/1`);
+                setShowSearch(false);
+                let results = await getData('search', value);
+                results = results.data
+                props.setSearchResults(results);
+            }
+            fetchData();
+        } else {
+            // If search is closed, just open it
+            setShowSearch(true);
+        }
     }
 
     return(

@@ -6,12 +6,23 @@ export function SearchResults(props) {
     return(
         <div>
             <div className={`${styles.shopSectionName}`}>
-                <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Search Results for: "{props.searchResults?.query}"</h5>
+                <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Search Results for: "{props.searchThis || props.searchResults?.query}"</h5>
+                {props.loading && <p className={`third-biggest-font-size second-biggest-font-weight ${styles.loadContainer}`}>
+                    Loading
+                    <span className={styles.dots}>
+                        <span className={styles.load}>.</span>
+                        <span className={styles.load}>.</span>
+                        <span className={styles.load}>.</span>
+                    </span>
+                </p>}
             </div>
             <div className={styles.searchGrid}>
                 {props.searchResults
-                    ? props.searchResults.products.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} />)
-                    : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)}
+                    ? props.searchResults.products.length > 0
+                        ? props.searchResults.products.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} />)
+                        : <div>No products found.</div>
+                    : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)
+                }
             </div>
         </ div>
     )

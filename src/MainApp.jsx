@@ -37,7 +37,7 @@ export default function MainApp() {
         setMostPopular(mostPopularData)
         return mostPopularData
       }
-      console.log(fetchMostPopular())
+      fetchMostPopular()
     }
   }, [currPage])
 
@@ -49,15 +49,30 @@ export default function MainApp() {
     } else if (location.pathname === '/') {
       setCurrPage('home');
     }
+    else if (location.pathname.includes('/search')) {
+        async function fetchData() {
+          let url = location.pathname.split('/')
+          setSearchThis(url[2])
+          setLoading(true)
+          let results = await getData('search', url[2], url[3]);
+          results = results.data
+          setSearchResults(results)
+          setLoading(false)
+        }
+        fetchData()
+    }
     // Add more routes as needed
   }, [location.pathname]);
 
   const [searchResults, setSearchResults] = useState('')
+  const [searchThis, setSearchThis] = useState('')
+  const [loading, setLoading] = useState('')
 
   return (
       <>
         <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />
-        <App setCurrPage={setCurrPage} mostPopular={mostPopular} searchResults={searchResults} />
+        <App setCurrPage={setCurrPage} mostPopular={mostPopular} searchResults={searchResults} searchThis={searchThis}
+        loading={loading} />
       </>
   );
 }
