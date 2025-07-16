@@ -19,7 +19,7 @@ export function SearchResults(props) {
             <div className={styles.searchGrid}>
                 {props.searchResults
                     ? props.searchResults.products.length > 0
-                        ? props.searchResults.products.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} />)
+                        ? props.searchResults.products.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} setShoe={props.setShoe} />)
                         : <div>No products found.</div>
                     : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)
                 }

@@ -1,15 +1,26 @@
 import styles from './shop.module.css'
+import noImageFound from '../../assets/images/no-image-found1.png'
+import { useMemo } from 'react';
 
 export default function Shoe() {
+    function stripHtml(html) {
+        return html ? html.replace(/<[^>]*>?/gm, '') : '';
+    }
+    const selectedShoe = useMemo(() => {
+        try {return JSON.parse(localStorage.getItem('selectedShoe'));} 
+        catch {return {};}
+    }, []);
+    const description = stripHtml(selectedShoe?.description) || 'No Product Description Found';
+
     return(
         <div className={`${styles.shoe} horizontal-flexbox`}>
-            <img className={`${styles.shoeImg}`} src={JSON.parse(localStorage.getItem('selectedShoe')).thumbnail} alt="" srcset="" />
+            <img className={`${styles.shoeImg}`} src={JSON.parse(localStorage.getItem('selectedShoe'))?.thumbnail || JSON.parse(localStorage.getItem('selectedShoe'))?.featured_image || noImageFound} alt="" srcset="" />
             <div className={`${styles.shoeInfo} vertical-flexbox`}>
                 <div className={`${styles.shoeCardInfo} horizontal-flexbox third-biggest-font-size biggest-font-weight`}>
-                    <p>{JSON.parse(localStorage.getItem('selectedShoe')).shoeName}</p>
-                    <p className={`${styles.price}`}>${JSON.parse(localStorage.getItem('selectedShoe'))?.retailPrice || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice?.goat || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice?.stockX || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice.flightClub || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice.stadiumGoods}</p>
+                    <p>{selectedShoe?.shoeName || selectedShoe?.title}</p>
+                    <p className={`${styles.price}`}>${selectedShoe?.retailPrice || selectedShoe?.lowestResellPrice?.goat || selectedShoe?.lowestResellPrice?.stockX || selectedShoe?.lowestResellPrice?.flightClub || selectedShoe?.lowestResellPrice?.stadiumGoods || selectedShoe?.price}</p>
                 </div>
-                <div className="shoe-desc">{JSON.parse(localStorage.getItem('selectedShoe'))?.description || 'No Product Description Found'}</div>
+                <div className="shoe-desc">Product Description: {description}</div>
                 <div className={`${styles.shoeSize}`}>
                     <div className={`${styles.chooseSize} horizontal-flexbox`}>
                         Choose Size
