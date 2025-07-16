@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import Navbar from './components/navbar/Navbar';
 import {getData} from './api/getData.js' 
+import { useLocation } from 'react-router-dom';
+
 
 export default function MainApp() {
   const [theme, setTheme] = useState('');
@@ -39,10 +41,21 @@ export default function MainApp() {
     }
   }, [currPage])
 
+  const location = useLocation();
+
+useEffect(() => {
+  if (location.pathname === '/shop') {
+    setCurrPage('shop');
+  } else if (location.pathname === '/') {
+    setCurrPage('home');
+  }
+  // Add more routes as needed
+}, [location.pathname]);
+
   return (
-    <BrowserRouter>
-      <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} />
-      <App  setCurrPage={setCurrPage} mostPopular={mostPopular} />
-    </BrowserRouter>
+      <>
+        <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} />
+        <App setCurrPage={setCurrPage} mostPopular={mostPopular} />
+      </>
   );
 }
