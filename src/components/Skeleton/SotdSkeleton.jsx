@@ -1,6 +1,6 @@
 import styles from './skeleton.module.css'
 
-export default function SotdSkeleton() {
+export function SotdSkeleton() {
     return(
         <div className={`${styles.sotdSkeleton}`}>
             <h5 className="big-text horizontal-flexbox second-biggest-font-size second-biggest-font-weight">Sneaker of the Day</h5>
@@ -19,17 +19,17 @@ export default function SotdSkeleton() {
     )
 }
 
-{/* <div className="sneaker-otd vertical-flexbox">
-                <h5 className="big-text horizontal-flexbox second-biggest-font-size second-biggest-font-weight">Sneaker of the Day</h5>
-                <div className="card horizontal-flexbox">
-                    <div className="card-text vertical-flexbox">
-                        <h6 className="sneaker-of-the-day-name third-biggest-font-size second-biggest-font-weight">{props.sotd.sotdName}</h6>
-                        <p>{props.sotd?.sotdDesc}</p>
-                        <div className="cta horizontal-flexbox">
-                            <button className="avg-button pointer">Explore More</button>
-                            <button className="avg-button pointer">Check This Out</button>
-                        </div>
-                    </div>
-                    <div className="sneaker-otd-image pointer"><img className='sneaker-otd-img' src={props.sotd?.sotdImg} alt="" srcset="" /></div>
+export function SkeletonCard() {
+    return(
+        <div className={`vartical-flexbox ${styles.skeletonShopCard}`}>
+            <div className={`${styles.cardImg}`}></div>
+            <div className={`horizontal-flexbox ${styles.shopCardInfo}`}>
+                <div className={`vertical-flexbox ${styles.shopCardName}`}>
+                    <div className={`${styles.bigText}`}></div>
+                    <div className={`${styles.bigText}`}></div>
                 </div>
-            </div> */}
+                <div className={`${styles.bigText}`}></div>
+            </div>
+        </div>
+    )
+}

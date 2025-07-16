@@ -1,5 +1,5 @@
 import './homepage.css'
-import SotdSkeleton from '../Skeleton/SotdSkeleton'
+import {SotdSkeleton} from '../Skeleton/SotdSkeleton'
 import { Link } from "react-router-dom";
 
 export default function Homepage(props) {

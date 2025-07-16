@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ShopCards(props) {
     return(
-        <Link to="./shoe" className={` link vertical-flexbox pointer avg-button ${styles.card}`}>
+        <Link to={`./${props.shoe.shoeName}`} shoe={props.shoe} className={` link vertical-flexbox pointer avg-button ${styles.card}`}>
             <img src={props.shoe?.thumbnail} alt="" srcset="" />
             <div className={`horizontal-flexbox biggest-font-weight ${styles.sneakerCardInfo}`}>
                 <p>{props.shoe?.shoeName}</p>

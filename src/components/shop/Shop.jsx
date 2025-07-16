@@ -1,7 +1,6 @@
 import ShopCards from './ShopCards'
 import styles from './shop.module.css'
-
-// const num = 20
+import {SkeletonCard} from '../Skeleton/SotdSkeleton'
 
 export default function Shop(props) {
     return(
@@ -11,10 +10,9 @@ export default function Shop(props) {
                 <p className={`pointer`}>View More →</p>
             </div>
             <div className={styles.shopGrid}>
-                {props.mostPopular && (props.mostPopular.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} />))}
-                {/* {props.mostPopular.map({ length: num }, (_, index) => (
-                    <ShopCards key={index} />
-                ))} */}
+                {props.mostPopular
+                    ? props.mostPopular.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} />)
+                    : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)}
             </div>
         </ div>
     )
