@@ -90,8 +90,7 @@ input {
 
 
 select {
-    outline: none;
-    background-color: #13161a;
+    background-color: var(--primary-color);
     text-align: center;
     color: var(--text-color);
     border-radius: 5px; 

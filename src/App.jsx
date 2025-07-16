@@ -30,7 +30,7 @@ export default function App(props) {
                     localStorage.setItem('date', currentFormattedDate);
                     let sotdData = await getData('sotd')
                     sotdData = sotdData[0]
-                    const sotdDataParsed = {sotdImg: sotdData.thumbnail, sotdName: sotdData.shoeName, sotdDesc: sotdData.description}
+                    const sotdDataParsed = {sotdAllData: JSON.stringify(sotdData), sotdImg: sotdData.thumbnail, sotdName: sotdData.shoeName, sotdDesc: sotdData.description}
                     setSotd(sotdDataParsed)
                     localStorage.setItem('sotd', JSON.stringify(sotdDataParsed))
                 }
@@ -43,7 +43,7 @@ export default function App(props) {
                 localStorage.setItem('date', currentFormattedDate);
                 let sotdData = await getData('sotd')
                 sotdData = sotdData[0]
-                const sotdDataParsed = {sotdImg: sotdData.thumbnail, sotdName: sotdData.shoeName, sotdDesc: sotdData.description}
+                const sotdDataParsed = {sotdAllData: JSON.stringify(sotdData), sotdImg: sotdData.thumbnail, sotdName: sotdData.shoeName, sotdDesc: sotdData.description}
                 setSotd(sotdDataParsed)
                 localStorage.setItem('sotd', JSON.stringify(sotdDataParsed))
             }
@@ -56,7 +56,7 @@ export default function App(props) {
             <Routes>
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
                 <Route path="/shop" element={<Shop mostPopular={props.mostPopular} />} />
-                <Route path="/shop/shoe" element={<Shoe />} />
+                <Route path="/shop/:shoe" element={<Shoe />} />
                 {/* Add other routes here */}
             </Routes>
         </>

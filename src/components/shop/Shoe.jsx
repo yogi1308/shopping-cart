@@ -3,13 +3,13 @@ import styles from './shop.module.css'
 export default function Shoe() {
     return(
         <div className={`${styles.shoe} horizontal-flexbox`}>
-            <img className={`${styles.shoeImg}`} src="https://images.stockx.com/images/Air-Jordan-4-Retro-White-Cement-2025-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1743628198" alt="" srcset="" />
+            <img className={`${styles.shoeImg}`} src={JSON.parse(localStorage.getItem('selectedShoe')).thumbnail} alt="" srcset="" />
             <div className={`${styles.shoeInfo} vertical-flexbox`}>
                 <div className={`${styles.shoeCardInfo} horizontal-flexbox third-biggest-font-size biggest-font-weight`}>
-                    <p>Jordan 4 Retro White Cement (2025)</p>
-                    <p className={`${styles.price}`}>$300</p>
+                    <p>{JSON.parse(localStorage.getItem('selectedShoe')).shoeName}</p>
+                    <p className={`${styles.price}`}>${JSON.parse(localStorage.getItem('selectedShoe'))?.retailPrice || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice?.goat || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice?.stockX || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice.flightClub || JSON.parse(localStorage.getItem('selectedShoe')).lowestResellPrice.stadiumGoods}</p>
                 </div>
-                <div className="shoe-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, et cupiditate error dolore alias, iure tempora nam consequuntur, officiis asperiores doloremque nulla voluptate a ut obcaecati minima quae dolor expedita?</div>
+                <div className="shoe-desc">{JSON.parse(localStorage.getItem('selectedShoe'))?.description} No Product Description Found</div>
                 <div className={`${styles.shoeSize}`}>
                     <div className={`${styles.chooseSize} horizontal-flexbox`}>
                         Choose Size
