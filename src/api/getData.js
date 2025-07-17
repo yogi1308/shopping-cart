@@ -10,7 +10,6 @@ export async function getData(getThis, searchThis, page = 1) {
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-            console.log(result);
             if (result.status ==='error') {console.log(result)}
             return result
         } catch (error) {
@@ -35,5 +34,11 @@ export async function getData(getThis, searchThis, page = 1) {
     if (getThis === 'search') {
         const url = `https://sneaker-database-stockx.p.rapidapi.com/sg/search?query=${searchThis}&page=${page}`
         return fetchData(url)
+    }
+    if(getThis === 'similar') {
+        const url = `https://sneaker-database-stockx.p.rapidapi.com/getproducts?keywords='${searchThis}'`
+        const similar = await fetchData(url)
+        console.log(similar.slice(1))
+        return similar.slice(1)
     }
 }	

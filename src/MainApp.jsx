@@ -61,6 +61,17 @@ export default function MainApp() {
         }
         fetchData()
     }
+    else if (location.pathname.includes('/product')) {
+        async function fetchData() {
+          setdisplaySimilar(false)
+          let url = location.pathname.split('/')
+          const similar = url[2].split('-', 3).join()
+          const results = await getData('similar', similar);
+          setSearchResults(results)
+          setdisplaySimilar(true)
+        }
+        fetchData()
+    }
     // Add more routes as needed
   }, [location.pathname]);
 
@@ -68,6 +79,7 @@ export default function MainApp() {
   const [searchThis, setSearchThis] = useState('')
   const [loading, setLoading] = useState('')
   const [selectedShoe, setSelectedShoe] = useState(null)
+  const [displaySimilar, setdisplaySimilar] = useState('')
 
   return (
       <>
@@ -81,6 +93,7 @@ export default function MainApp() {
           selectedShoe={selectedShoe}
           setSelectedShoe={setSelectedShoe}
           setSearchResults={setSearchResults}
+          displaySimilar={displaySimilar}
         />
       </>
   );

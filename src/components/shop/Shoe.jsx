@@ -1,6 +1,9 @@
 import styles from './shop.module.css'
 import noImageFound from '../../assets/images/no-image-found1.png'
 import { useMemo } from 'react';
+import {SkeletonCard} from '../Skeleton/SotdSkeleton'
+import ShopCards from './ShopCards'
+
 
 export default function Shoe(props) {
     function stripHtml(html) {
@@ -16,7 +19,7 @@ export default function Shoe(props) {
     }, [props.selectedShoe]);
     const description = stripHtml(selectedShoe?.description) || 'No Product Description Found';
  
-    return(
+    return(<>
         <div className={`${styles.shoe} horizontal-flexbox`}>
             <img className={`${styles.shoeImg}`} src={selectedShoe?.thumbnail || selectedShoe?.featured_image || noImageFound} alt="" srcset="" />
             <div className={`${styles.shoeInfo} vertical-flexbox`}>
@@ -45,5 +48,17 @@ export default function Shoe(props) {
                 </div>
             </div>
         </div>
+        <div>
+            <div className={`horizontal-flexbox ${styles.shopSectionName}`}>
+                <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Similar Products</h5>
+                <p className={`pointer`}>View More →</p>
+            </div>
+            <div className={styles.shopGrid}>
+                {props.searchResults && props.displaySimilar
+                    ? props.searchResults.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} setSelectedShoe={props.setSelectedShoe} />)
+                    : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)}
+            </div>
+        </ div>
+        </>
     )
 }

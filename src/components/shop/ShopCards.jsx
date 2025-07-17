@@ -5,9 +5,11 @@ import noImageFound from '../../assets/images/no-image-found1.png'
 export default function ShopCards(props) {
     return(
         <Link 
-            to={`/shop/${encodeURIComponent(props.shoe?.shoeName || props.shoe?.title)}`} 
+            to={`/product/${encodeURIComponent(props.shoe?.shoeName?.split(' ').join('-') || props.shoe?.title?.split(' ').join('-'))}`} 
             onClick={() => {
+                console.log('click')
                 props.setSelectedShoe(props.shoe);
+                console.log(props.shoe)
                 localStorage.setItem('selectedShoe', JSON.stringify(props.shoe));
             }} 
             className={`link vertical-flexbox pointer avg-button ${styles.card}`}

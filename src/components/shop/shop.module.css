@@ -7,7 +7,7 @@
     margin: 1rem 3rem;
     margin-top: 0rem;
     padding-top: 0.6rem; 
-    padding-left: 0.5rem;
+    padding-left: 0.6rem;
     padding-bottom: 0.7rem;
     overflow: auto;
 }
@@ -39,6 +39,7 @@
 .sneakerCardInfo {
     padding: 0.5rem;
     padding-top: 0px;
+    align-items: flex-start;
 }
 
 p.price::first-letter {
@@ -107,7 +108,7 @@ option {
     background-color: var(--primary-color);
 }
 
-.shopSectionName {justify-content: space-between; margin: 0rem 3rem;}
+.shopSectionName {justify-content: space-between; margin: 0rem 3rem; margin-left: 3.5rem;}
 
 .searchGrid{
     display: grid;

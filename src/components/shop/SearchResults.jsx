@@ -13,7 +13,7 @@ export function SearchResults(props) {
         if (page === 1 && location.pathname.split('/')?.at(3) > 1) {
             setPage(Number(location.pathname.split('/')?.at(3)))
         }
-    }, [page])
+    }, [page, location.pathname])
 
     const navigate = useNavigate();
 
