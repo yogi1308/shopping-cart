@@ -57,7 +57,7 @@ export default function App(props) {
         <>
             <Routes>
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
-                <Route path="/shop" element={<Shop mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
+                <Route path="/shop" element={<Shop setLoading={props.setLoading} setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
                 <Route path="/product/:shoe" 
                 element={<Shoe searchResults={props.searchResults} 
                 displaySimilar={props.displaySimilar} setSelectedShoe={props.setSelectedShoe} selectedShoe={props.selectedShoe}

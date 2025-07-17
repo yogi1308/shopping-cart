@@ -53,7 +53,7 @@ export default function Shoe(props) {
         <div>
             <div className={`horizontal-flexbox ${styles.shopSectionName}`}>
                 <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Similar Products</h5>
-                <Link to={`../search/${selectedShoe?.shoeName.split(' ', 3).join(' ')}/1`}
+                <Link to={`../search/${selectedShoe?.shoeName?.split(' ', 3).join(' ')}/1`}
                     onClick={async() => {
                         let results = await getData('search', selectedShoe?.shoeName.split(' ', 3).join(' '));
                         results = results.data
@@ -65,7 +65,7 @@ export default function Shoe(props) {
             </div>
             <div className={styles.shopGrid}>
                 {props.searchResults && props.displaySimilar
-                    ? props.searchResults.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} setSelectedShoe={props.setSelectedShoe} />)
+                    ? props.searchResults?.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} setSelectedShoe={props.setSelectedShoe} />)
                     : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)}
             </div>
         </ div>

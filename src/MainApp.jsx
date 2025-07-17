@@ -50,6 +50,7 @@ export default function MainApp() {
       setCurrPage('home');
     }
     else if (location.pathname.includes('/search')) {
+      if (location.pathname.includes('popular')) {return}
         async function fetchData() {
           let url = location.pathname.split('/')
           setSearchThis(url[2])
@@ -97,6 +98,7 @@ export default function MainApp() {
           displaySimilar={displaySimilar}
           apiError={apiError} setApiError={setApiError}
           setSearchThis={setSearchThis}
+          setLoading={setLoading}
         />
       </>
   );

@@ -1,4 +1,4 @@
-export async function getData(getThis, searchThis, page = 1) {
+export async function getData(getThis, searchThis, page = 1, limit = 20) {
     const options = {
         method: 'GET',
         headers: {
@@ -27,7 +27,7 @@ export async function getData(getThis, searchThis, page = 1) {
     }
 
     if (getThis === 'mostPopular') {
-        const url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=20';
+        const url = `https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=${limit}`;
         return fetchData(url)
     }
 
