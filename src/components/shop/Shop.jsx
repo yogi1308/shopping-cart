@@ -14,6 +14,7 @@ export default function Shop(props) {
                     props.setLoading(true)
                     props.setSearchThis(`Most Popular`)
                     let results = await getData('mostPopular', '', '', 200);
+                    if(results.status === 'error') {props.setApiError(true)} else {props.setApiError(false)}
                     console.log(results)
                     props.setSearchResults(results);
                     props.setLoading(false)

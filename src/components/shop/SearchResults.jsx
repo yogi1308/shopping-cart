@@ -5,8 +5,8 @@ import {useState, useEffect} from 'react'
 import {getData} from '../../api/getData.js'
 import {useNavigate} from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
-
-const PAGE_SIZE = 15
+ 
+const  PAGE_SIZE = 15
 
 export function SearchResults(props) {
     const [page, setPage] = useState(1)
@@ -88,9 +88,9 @@ export function SearchResults(props) {
                 {page - 2 > 0 && <span onClick={() => {setPage(prev => {getNextPage(prev - 2); return prev - 2})}}>{page - 2}</span>} 
                 {page - 1 > 0 && <span onClick={() => {setPage(prev => {getNextPage(prev - 1); return prev - 1})}}>{page - 1}</span>} 
                 <span className={` ${styles.current}`}>{page}</span>
-                {pageLast1 && <span onClick={() => {setPage(prev => {getNextPage(prev + 1); return prev + 1})}}>{page+1}</span>}
-                {pageLast2 && <span onClick={() => {setPage(prev => {getNextPage(prev + 2); return prev + 2})}}>{page+2}</span>}
-                {pageLast3 && <span onClick={() => {setPage(prev => {getNextPage(prev + 3); return prev + 3})}}>{page+3}</span>}
+                {page + 1 <= maxPage && <span onClick={() => {setPage(prev => {getNextPage(prev + 1); return prev + 1})}}>{page+1}</span>}
+                {page + 2 <= maxPage && <span onClick={() => {setPage(prev => {getNextPage(prev + 2); return prev + 2})}}>{page+2}</span>}
+                {page + 3 <= maxPage && <span onClick={() => {setPage(prev => {getNextPage(prev + 3); return prev + 3})}}>{page+3}</span>}
                 {page < maxPage && <span onClick={() => {setPage(prev => {getNextPage(prev + 1); return prev + 1})}}>›</span>}
             </div>
             {props.loading && <p className={`third-biggest-font-size second-biggest-font-weight ${styles.loadContainer} ${styles.loadBottom}`}>

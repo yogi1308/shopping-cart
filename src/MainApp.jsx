@@ -4,10 +4,18 @@ import App from './App';
 import Navbar from './components/navbar/Navbar';
 import {getData} from './api/getData.js' 
 import { useLocation } from 'react-router-dom';
-
+import { ApiErrorPage, Sike, Real } from './components/ErrorPage.jsx/ErrorPage.jsx';
 
 export default function MainApp() {
   const [theme, setTheme] = useState('');
+  const [searchResults, setSearchResults] = useState('')
+  const [searchThis, setSearchThis] = useState('')
+  const [loading, setLoading] = useState('')
+  const [selectedShoe, setSelectedShoe] = useState(null)
+  const [displaySimilar, setdisplaySimilar] = useState('')
+  const [apiError, setApiError] = useState(false)
+  const [apiSike, setSike] = useState(false)
+  const [apiReal, setReal] = useState(false)
   useEffect(() => {
     if (theme === '') {setTheme(localStorage?.getItem('theme')); return}
     localStorage.setItem('theme', theme)
@@ -74,19 +82,12 @@ export default function MainApp() {
         fetchData()
     }
     // Add more routes as needed
-  }, [location.pathname]);
-
-  const [searchResults, setSearchResults] = useState('')
-  const [searchThis, setSearchThis] = useState('')
-  const [loading, setLoading] = useState('')
-  const [selectedShoe, setSelectedShoe] = useState(null)
-  const [displaySimilar, setdisplaySimilar] = useState('')
-  const [apiError, setApiError] = useState(false)
+  }, [location.pathname, apiError]);
 
   return (
       <>
-        <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />
-        <App 
+        {!apiError && <Navbar theme={theme} setApiError={setApiError} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />}
+        {!apiError && <App 
           setCurrPage={setCurrPage} 
           mostPopular={mostPopular} 
           searchResults={searchResults} 
@@ -96,10 +97,11 @@ export default function MainApp() {
           setSelectedShoe={setSelectedShoe}
           setSearchResults={setSearchResults}
           displaySimilar={displaySimilar}
-          apiError={apiError} setApiError={setApiError}
+          setApiError={setApiError}
           setSearchThis={setSearchThis}
           setLoading={setLoading}
-        />
+        />}
+        {apiError && (apiSike ? <Sike setSike={setSike} setReal={setReal} /> : apiReal ? <Real setApiError={setApiError} setReal={setReal} /> :<ApiErrorPage setApiError={setApiError} setSike={setSike}/>)}
       </>
   );
 }

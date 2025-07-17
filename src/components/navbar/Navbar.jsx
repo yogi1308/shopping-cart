@@ -20,6 +20,7 @@ export default function Navbar(props) {
                 navigate(`/search/${encodeURIComponent(value)}/1`);
                 setShowSearch(false);
                 let results = await getData('search', value);
+                if(results.status === 'error') {props.setApiError(true)} else {props.setApiError(false)}
                 results = results.data
                 props.setSearchResults(results);
             }
@@ -37,8 +38,8 @@ export default function Navbar(props) {
                     <ShoeIcon />
                     <h1 className='big-text biggest-font-weight' >StockXYZ</h1>
                 </div>
-                {!showSearch ? <NavLinks setCurrPage={props.setCurrPage} /> 
-                : <Searchbox setShowSearch={setShowSearch} setSearchResults={props.setSearchResults} />
+                {!showSearch ? <NavLinks setApiError={props.setApiError} setCurrPage={props.setCurrPage} /> 
+                : <Searchbox setShowSearch={setShowSearch} setApiError={props.setApiError} setSearchResults={props.setSearchResults} />
                 }
                 <div className="horizontal-flexbox">
                     <div className="icons horizontal-flexbox">

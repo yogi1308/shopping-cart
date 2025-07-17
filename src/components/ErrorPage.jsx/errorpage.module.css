@@ -1,0 +1,81 @@
+.errorContainer {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color, #f8f8f8);
+  color: var(--text-color, #222);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  margin: 3rem auto;
+  max-width: 420px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border: 1.5px solid var(--text-color)
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1.2rem;
+  color: var(--secondary-color, #e57373);
+}
+
+.errorTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.errorMessage {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text-color, #444);
+}
+
+.homeButton {
+  background: var(--secondary-color, #e57373);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1.5px solid var(--text-color)
+}
+
+.homeButton:hover {
+    transform: translate(-10px, -10px);
+  box-shadow: 10px 10px var(--text-color), 10px 10px 0px 1.5px var(--text-color);
+}
+
+.gif, .appear {
+    animation: appear 0.3s ease 1s 1 forwards;
+    opacity: 0;
+}
+
+.imgCont > div {animation-delay: 5s;}
+.imgCont > .gif {animation-delay: 7s;}
+.real, .errorContainer > p {animation: appear 0.3s ease 9s 1 forwards; opacity: 0;}
+.sikeText {animation: appear 1s ease 0s 1 forwards;}
+.sike {animation: appear 1s ease-in 1s 1 forwards; opacity: 0;}
+
+@keyframes appear {
+    0% {
+        transform: scale(0.5) translateY(-10px);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+}
+
+.gif {
+    border: 1.5px solid var(--text-color);
+}
+
+.real:hover {
+    content: 'THIS TIME FOR REAL'
+}

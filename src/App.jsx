@@ -5,7 +5,6 @@ import Shoe from './components/shop/Shoe';
 import {useEffect, useState} from 'react'
 import {getData} from './api/getData.js'
 import {SearchResults} from './components/shop/SearchResults.jsx'
-import {ApiErrorPage} from './components/ErrorPage.jsx/ErrorPage.jsx'
 
 export default function App(props) {
     let dateObject = new Date();
@@ -31,6 +30,7 @@ export default function App(props) {
                     setDate(currentFormattedDate);
                     localStorage.setItem('date', currentFormattedDate);
                     let sotdData = await getData('sotd')
+                    if(sotdData.status === 'error') {props.setApiError(true)} else {props.setApiError(false)}
                     sotdData = sotdData[0]
                     const sotdDataParsed = {sotdAllData: JSON.stringify(sotdData), sotdImg: sotdData.thumbnail, sotdName: sotdData.shoeName, sotdDesc: sotdData.description}
                     setSotd(sotdDataParsed)
@@ -44,6 +44,7 @@ export default function App(props) {
                 setDate(currentFormattedDate);
                 localStorage.setItem('date', currentFormattedDate);
                 let sotdData = await getData('sotd')
+                if(sotdData.status === 'error') {props.setApiError(true)} else {props.setApiError(false)}
                 sotdData = sotdData[0]
                 const sotdDataParsed = {sotdAllData: JSON.stringify(sotdData), sotdImg: sotdData.thumbnail, sotdName: sotdData.shoeName, sotdDesc: sotdData.description}
                 setSotd(sotdDataParsed)
@@ -57,13 +58,13 @@ export default function App(props) {
         <>
             <Routes>
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
-                <Route path="/shop" element={<Shop setLoading={props.setLoading} setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
+                <Route path="/shop" element={<Shop setApiError={props.setApiError} setLoading={props.setLoading} setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
                 <Route path="/product/:shoe" 
-                element={<Shoe searchResults={props.searchResults} 
+                element={<Shoe setApiError={props.setApiError} searchResults={props.searchResults} 
                 displaySimilar={props.displaySimilar} setSelectedShoe={props.setSelectedShoe} selectedShoe={props.selectedShoe}
                 setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} />} errorElement='ApiErrorPage' />
 
-                <Route path="/search/:shoe/:page" element={<SearchResults searchResults={props.searchResults}
+                <Route path="/search/:shoe/:page" element={<SearchResults setApiError={props.setApiError} searchResults={props.searchResults}
                 loading={props.loading} searchThis={props.searchThis} setSelectedShoe={props.setSelectedShoe}
                 setSearchResults={props.setSearchResults} />} errorElement='ApiErrorPage' />
                 {/* Add other routes here */}

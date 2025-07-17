@@ -16,7 +16,7 @@ export default function Homepage(props) {
                         <p>{props.sotd?.sotdDesc}</p>
                         <div className="cta horizontal-flexbox">
                             <Link to="../shop" onClick={() => {props.setCurrPage('shop')}}><button className="avg-button pointer">Explore More</button></Link>
-                            <Link to={`shop/${encodeURIComponent(props.sotd.sotdName)}`} onClick={() => localStorage.setItem('selectedShoe', props.sotd.sotdAllData)} ><button className="avg-button pointer">Check This Out</button></Link>
+                            <Link to={`product/${encodeURIComponent(props.sotd.sotdName)}`} onClick={() => localStorage.setItem('selectedShoe', props.sotd.sotdAllData)} ><button className="avg-button pointer">Check This Out</button></Link>
                         </div>
                     </div>
                     <div className="sneaker-otd-image pointer"><img className='sneaker-otd-img' src={props.sotd?.sotdImg || props.sotd?.featured_image || noImageFound} alt="" srcset="" /></div>

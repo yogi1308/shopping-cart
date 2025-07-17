@@ -56,6 +56,7 @@ export default function Shoe(props) {
                 <Link to={`../search/${selectedShoe?.shoeName?.split(' ', 3).join(' ')}/1`}
                     onClick={async() => {
                         let results = await getData('search', selectedShoe?.shoeName.split(' ', 3).join(' '));
+                        if(results.status === 'error') {props.setApiError(true)} else {props.setApiError(false)}
                         results = results.data
                         props.setSearchThis(`similar, ${selectedShoe?.shoeName || selectedShoe?.title}`)
                         props.setSearchResults(results);

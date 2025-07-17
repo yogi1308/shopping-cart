@@ -17,8 +17,6 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
             return error
         }
     }
-    const allUrls = ['https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=100', 
-        `https://sneaker-database-stockx.p.rapidapi.com/stockx/sneakers?query=${''}`]
 
     if (getThis === 'sotd') {
         const url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=1';
@@ -38,7 +36,16 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
     if(getThis === 'similar') {
         const url = `https://sneaker-database-stockx.p.rapidapi.com/getproducts?keywords='${searchThis}'`
         const similar = await fetchData(url)
-        console.log(similar.slice(1))
         return similar.slice(1)
     }
 }	
+
+export async function getGif() {
+  const response = await fetch(
+    `https://api.giphy.com/v1/gifs/translate?api_key=qrKcLjVL1aukwxouXEUlzJvOFZlMbQjw&s=funny random gif`,
+    { mode: 'cors' }
+  );
+  const data = await response.json();
+  console.log('Fetched URL:', data.data.images.original.url);
+  return data.data.images.original.url; // Ensure this is returned
+}
