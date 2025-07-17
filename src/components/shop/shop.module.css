@@ -138,3 +138,23 @@ option {
   50% { transform: translateY(-5px); }
   100% { transform: translateY(0px); }
 }
+
+.pagination {
+    justify-self: center;
+    margin: 1rem;
+}
+
+.pagination > * {
+    min-width: 1.5rem;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination > span:hover {
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--secondary-color)
+}
+
+.current {background-color: var(--secondary-color)}

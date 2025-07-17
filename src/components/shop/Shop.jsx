@@ -11,7 +11,7 @@ export default function Shop(props) {
             </div>
             <div className={styles.shopGrid}>
                 {props.mostPopular
-                    ? props.mostPopular.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} />)
+                    ? props.mostPopular.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} setSelectedShoe={props.setSelectedShoe} />)
                     : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)}
             </div>
         </ div>

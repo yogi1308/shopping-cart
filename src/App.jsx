@@ -56,10 +56,11 @@ export default function App(props) {
         <>
             <Routes>
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
-                <Route path="/shop" element={<Shop mostPopular={props.mostPopular} />} />
-                <Route path="/shop/:shoe" element={<Shoe />} />
+                <Route path="/shop" element={<Shop mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
+                <Route path="/shop/:shoe" element={<Shoe selectedShoe={props.selectedShoe} />} />
                 <Route path="/search/:shoe/:page" element={<SearchResults searchResults={props.searchResults}
-                loading={props.loading} searchThis={props.searchThis} />} />
+                loading={props.loading} searchThis={props.searchThis} setSelectedShoe={props.setSelectedShoe}
+                setSearchResults={props.setSearchResults} />} />
                 {/* Add other routes here */}
             </Routes>
         </>

@@ -4,7 +4,14 @@ import noImageFound from '../../assets/images/no-image-found1.png'
 
 export default function ShopCards(props) {
     return(
-        <Link to={`../shop/${encodeURIComponent(props.shoe?.shoeName || props.shoe?.title)}`} onClick={() => localStorage.setItem('selectedShoe', JSON.stringify(props.shoe))} className={` link vertical-flexbox pointer avg-button ${styles.card}`}>
+        <Link 
+            to={`/shop/${encodeURIComponent(props.shoe?.shoeName || props.shoe?.title)}`} 
+            onClick={() => {
+                props.setSelectedShoe(props.shoe);
+                localStorage.setItem('selectedShoe', JSON.stringify(props.shoe));
+            }} 
+            className={`link vertical-flexbox pointer avg-button ${styles.card}`}
+        >
             <img src={props.shoe?.thumbnail || props.shoe?.featured_image || noImageFound} alt="" srcset="" />
             <div className={`horizontal-flexbox biggest-font-weight ${styles.sneakerCardInfo}`}>
                 <p>{props.shoe?.shoeName || props.shoe?.title}</p>

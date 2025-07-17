@@ -11,6 +11,7 @@ export async function getData(getThis, searchThis, page = 1) {
             const response = await fetch(url, options);
             const result = await response.json();
             console.log(result);
+            if (result.status ==='error') {console.log(result)}
             return result
         } catch (error) {
             console.error(error);

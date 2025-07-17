@@ -67,12 +67,21 @@ export default function MainApp() {
   const [searchResults, setSearchResults] = useState('')
   const [searchThis, setSearchThis] = useState('')
   const [loading, setLoading] = useState('')
+  const [selectedShoe, setSelectedShoe] = useState(null)
 
   return (
       <>
         <Navbar theme={theme} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />
-        <App setCurrPage={setCurrPage} mostPopular={mostPopular} searchResults={searchResults} searchThis={searchThis}
-        loading={loading} />
+        <App 
+          setCurrPage={setCurrPage} 
+          mostPopular={mostPopular} 
+          searchResults={searchResults} 
+          searchThis={searchThis}
+          loading={loading} 
+          selectedShoe={selectedShoe}
+          setSelectedShoe={setSelectedShoe}
+          setSearchResults={setSearchResults}
+        />
       </>
   );
 }

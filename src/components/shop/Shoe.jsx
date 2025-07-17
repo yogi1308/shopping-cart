@@ -2,19 +2,23 @@ import styles from './shop.module.css'
 import noImageFound from '../../assets/images/no-image-found1.png'
 import { useMemo } from 'react';
 
-export default function Shoe() {
+export default function Shoe(props) {
     function stripHtml(html) {
         return html ? html.replace(/<[^>]*>?/gm, '') : '';
     }
     const selectedShoe = useMemo(() => {
+        // Use prop if available, otherwise fallback to localStorage
+        if (props.selectedShoe) {
+            return props.selectedShoe;
+        }
         try {return JSON.parse(localStorage.getItem('selectedShoe'));} 
         catch {return {};}
-    }, []);
+    }, [props.selectedShoe]);
     const description = stripHtml(selectedShoe?.description) || 'No Product Description Found';
-
+ 
     return(
         <div className={`${styles.shoe} horizontal-flexbox`}>
-            <img className={`${styles.shoeImg}`} src={JSON.parse(localStorage.getItem('selectedShoe'))?.thumbnail || JSON.parse(localStorage.getItem('selectedShoe'))?.featured_image || noImageFound} alt="" srcset="" />
+            <img className={`${styles.shoeImg}`} src={selectedShoe?.thumbnail || selectedShoe?.featured_image || noImageFound} alt="" srcset="" />
             <div className={`${styles.shoeInfo} vertical-flexbox`}>
                 <div className={`${styles.shoeCardInfo} horizontal-flexbox third-biggest-font-size biggest-font-weight`}>
                     <p>{selectedShoe?.shoeName || selectedShoe?.title}</p>
