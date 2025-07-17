@@ -39,7 +39,7 @@ nav {
 }
 
 .cart::after {
-    content: '-';
+    content: attr(data-content);
     text-align: center;
     width: 100%;
     aspect-ratio: 1/1;
@@ -48,10 +48,12 @@ nav {
     left: 0%;
     z-index: 10;
     transform-origin: top right;
-    transform: scale(0.5);
+    transform: scale(0.55);
     border-radius: 50%;
     background-color: var(--accent-color);
     font-weight: 600;
+    font-size: 0.9rem;
+    align-content: center;
 }
 
 .theme {

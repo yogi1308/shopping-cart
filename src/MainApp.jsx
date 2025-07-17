@@ -5,6 +5,7 @@ import Navbar from './components/navbar/Navbar';
 import {getData} from './api/getData.js' 
 import { useLocation } from 'react-router-dom';
 import { ApiErrorPage, Sike, Real } from './components/ErrorPage.jsx/ErrorPage.jsx';
+import {Cart} from './components/cart/Cart.jsx'
 
 export default function MainApp() {
   const [theme, setTheme] = useState('');
@@ -16,6 +17,8 @@ export default function MainApp() {
   const [apiError, setApiError] = useState(false)
   const [apiSike, setSike] = useState(false)
   const [apiReal, setReal] = useState(false)
+  const [cart, setCart] = useState([])
+  const [showCart, setShowCart] = useState(false)
   useEffect(() => {
     if (theme === '') {setTheme(localStorage?.getItem('theme')); return}
     localStorage.setItem('theme', theme)
@@ -84,9 +87,24 @@ export default function MainApp() {
     // Add more routes as needed
   }, [location.pathname, apiError]);
 
+  useEffect(() => {
+    console.log(cart)
+    let totalItems = 0;
+    if (cart.length >= 0) {cart?.map((obj) => totalItems += obj.count)}
+    if (totalItems === 0 || totalItems.length === 0) {document.querySelector('span.cart').setAttribute('data-content', "-");}
+    else {document.querySelector('span.cart').setAttribute('data-content', totalItems)}
+  }, [cart])
+
+  useEffect(() => {
+    const root = document.querySelector('#root');
+    if (showCart) {root.classList.add('overlay')}
+    else {root.classList.remove('overlay')}
+  }, [showCart]);
+
+
   return (
       <>
-        {!apiError && <Navbar theme={theme} setApiError={setApiError} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />}
+        {!apiError && <Navbar setShowCart={setShowCart} cart={cart} theme={theme} setApiError={setApiError} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />}
         {!apiError && <App 
           setCurrPage={setCurrPage} 
           mostPopular={mostPopular} 
@@ -100,7 +118,10 @@ export default function MainApp() {
           setApiError={setApiError}
           setSearchThis={setSearchThis}
           setLoading={setLoading}
+          setCart={setCart}
+          cart={cart}
         />}
+        {(!apiError && showCart) && <Cart cart={cart} setShowCart={setShowCart} />}
         {apiError && (apiSike ? <Sike setSike={setSike} setReal={setReal} /> : apiReal ? <Real setApiError={setApiError} setReal={setReal} /> :<ApiErrorPage setApiError={setApiError} setSike={setSike}/>)}
       </>
   );

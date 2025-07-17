@@ -7,7 +7,6 @@ import { useState } from 'react'
 import {getData} from '../../api/getData.js'
 import { useNavigate } from "react-router-dom";
 
-
 export default function Navbar(props) {
     const [showSearch, setShowSearch] = useState(false)
     const navigate = useNavigate();
@@ -46,7 +45,7 @@ export default function Navbar(props) {
                         <span onClick={() => {searchIconClicked()}}>
                             <SearchIcon setShowSearch={setShowSearch} />
                         </span>
-                        <span className="cart">
+                        <span className="cart" data-content="-" onClick={() => {props.setShowCart(true)}} > 
                             <ShoppingCartIcon />
                         </span>
                         <span className="theme pointer" onClick={() => {

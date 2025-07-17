@@ -12,9 +12,6 @@ export function SearchResults(props) {
     const [page, setPage] = useState(1)
     const location = useLocation();
     const [start, setStart] = useState(40)
-    const [pageLast3, setPageLast3] = useState(true)
-    const [pageLast2, setPageLast2] = useState(true)
-    const [pageLast1, setPageLast1] = useState(true)
     const [maxPage, setMaxPage] = useState(1);
     useEffect(() => {
         setPage(Number(location.pathname.split('/')?.at(3)))
@@ -38,15 +35,6 @@ export function SearchResults(props) {
             if (props.searchResults?.slice(start + 15, start + 30).length > 0) {
                 setStart(prev => prev + 40) 
             }
-            if (props.searchResults?.slice(start + 30, start + 45).length === 0) {
-                setPageLast1(false)
-            } else {setPageLast1(true)}
-            if (props.searchResults?.slice(start + 45, start + 60).length === 0) {
-                setPageLast2(false)
-            } else {setPageLast2(true)}
-            if (props.searchResults?.slice(start + 60, start + 75).length === 0) {
-                setPageLast3(false)
-            } else {setPageLast3(true)}
             return
         }
         const value = props.searchThis

@@ -330,3 +330,24 @@ span.skeleton::after {
 }
 
 a {color: var(--text-color); text-decoration: none;}
+
+.overlay > :not(.cartContainer) {
+  opacity: 0.1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.cartContainer{
+    background-color: var(--primary-color);
+    position: fixed;
+    right: 0%;
+    top: 0%;
+    width: 40vw;
+    height: 100vh;
+    box-shadow: -10px 0px 20px 0px #aaa;
+    justify-content: flex-start;
+    padding-top: 2.5rem;
+    gap: 0rem;
+    overflow: auto;
+}
+

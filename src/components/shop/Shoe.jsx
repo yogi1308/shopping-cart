@@ -45,8 +45,14 @@ export default function Shoe(props) {
                     </div>
                 </div>
                 <div className={`${styles.addToCart} horizontal-flexbox`}>
-                    <div className={`${styles.number} horizontal-flexbox`}><span>-</span><input type="number" defaultValue="1" /><span>+</span></div>
-                    <button className="avg-button">Add To Cart ↗</button>
+                    <div className={`${styles.number} horizontal-flexbox`}><span onClick={() => {if (document.querySelector('input.number').value === '1') {return} document.querySelector('input.number').value = Number(document.querySelector('input.number').value) - 1}}>-</span>
+                            <input className='number' min="1" type="number" defaultValue="1" placeholder='1' onChange={(e) => {e.target.value = Math.max(1, e.target.value)}} />
+                        <span onClick={() => {console.log(document.querySelector('input.number').value); document.querySelector('input.number').value = Number(document.querySelector('input.number').value) + 1}}>+</span></div>
+                    <button className="avg-button" onClick={() => {
+                        const value = Number(document.querySelector('input.number').value);
+                        document.querySelector('input.number').value = 1
+                        props.setCart(prev => { const index = prev.findIndex(obj => obj.item === selectedShoe); if (index !== -1) {return prev.map((obj, idx) => idx === index ? {...obj, count: value} : obj)} else {return [...prev, { item: selectedShoe, count: value, name: selectedShoe?.shoeName || selectedShoe?.title, img: selectedShoe?.thumbnail || selectedShoe?.featured_image || noImageFound, price: selectedShoe?.retailPrice || selectedShoe?.lowestResellPrice?.goat || selectedShoe?.lowestResellPrice?.stockX || selectedShoe?.lowestResellPrice?.flightClub || selectedShoe?.lowestResellPrice?.stadiumGoods || selectedShoe?.price}];}})
+                    }} >Add To Cart ↗</button>
                 </div>
             </div>
         </div>
