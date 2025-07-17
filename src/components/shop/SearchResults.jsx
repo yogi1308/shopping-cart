@@ -28,7 +28,9 @@ export function SearchResults(props) {
     return(
         <div>
             <div className={`${styles.shopSectionName}`}>
-                <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Search Results for: "{props.searchThis || props.searchResults?.query}"</h5>
+                {props.searchThis.includes('similar') ? 
+                <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Similar To: "{props.searchThis.split(', ').at(1)}"</h5> 
+                : <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Search Results for: "{props.searchResults?.query || props.searchThis}"</h5>}
                 {props.loading && <p className={`third-biggest-font-size second-biggest-font-weight ${styles.loadContainer}`}>
                     Loading
                     <span className={styles.dots}>
@@ -40,7 +42,7 @@ export function SearchResults(props) {
             </div>
             <div className={styles.searchGrid}>
                 {props.searchResults
-                    ? props.searchResults.products.length > 0
+                    ? props.searchResults.products?.length > 0
                         ? props.searchResults.products.map((shoe) => <ShopCards key={shoe._id} shoe={shoe} setSelectedShoe={props.setSelectedShoe} />)
                         : <div>No products found.</div>
                     : Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)

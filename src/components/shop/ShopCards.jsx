@@ -7,9 +7,7 @@ export default function ShopCards(props) {
         <Link 
             to={`/product/${encodeURIComponent(props.shoe?.shoeName?.split(' ').join('-') || props.shoe?.title?.split(' ').join('-'))}`} 
             onClick={() => {
-                console.log('click')
                 props.setSelectedShoe(props.shoe);
-                console.log(props.shoe)
                 localStorage.setItem('selectedShoe', JSON.stringify(props.shoe));
             }} 
             className={`link vertical-flexbox pointer avg-button ${styles.card}`}

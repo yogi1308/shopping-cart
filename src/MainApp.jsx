@@ -80,6 +80,7 @@ export default function MainApp() {
   const [loading, setLoading] = useState('')
   const [selectedShoe, setSelectedShoe] = useState(null)
   const [displaySimilar, setdisplaySimilar] = useState('')
+  const [apiError, setApiError] = useState(false)
 
   return (
       <>
@@ -94,6 +95,8 @@ export default function MainApp() {
           setSelectedShoe={setSelectedShoe}
           setSearchResults={setSearchResults}
           displaySimilar={displaySimilar}
+          apiError={apiError} setApiError={setApiError}
+          setSearchThis={setSearchThis}
         />
       </>
   );

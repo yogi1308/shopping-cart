@@ -5,6 +5,7 @@ import Shoe from './components/shop/Shoe';
 import {useEffect, useState} from 'react'
 import {getData} from './api/getData.js'
 import {SearchResults} from './components/shop/SearchResults.jsx'
+import {ApiErrorPage} from './components/ErrorPage.jsx/ErrorPage.jsx'
 
 export default function App(props) {
     let dateObject = new Date();
@@ -57,11 +58,14 @@ export default function App(props) {
             <Routes>
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
                 <Route path="/shop" element={<Shop mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
-                <Route path="/product/:shoe" element={<Shoe searchResults={props.searchResults} 
-                displaySimilar={props.displaySimilar} setSelectedShoe={props.setSelectedShoe} selectedShoe={props.selectedShoe} />} />
+                <Route path="/product/:shoe" 
+                element={<Shoe searchResults={props.searchResults} 
+                displaySimilar={props.displaySimilar} setSelectedShoe={props.setSelectedShoe} selectedShoe={props.selectedShoe}
+                setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} />} errorElement='ApiErrorPage' />
+
                 <Route path="/search/:shoe/:page" element={<SearchResults searchResults={props.searchResults}
                 loading={props.loading} searchThis={props.searchThis} setSelectedShoe={props.setSelectedShoe}
-                setSearchResults={props.setSearchResults} />} />
+                setSearchResults={props.setSearchResults} />} errorElement='ApiErrorPage' />
                 {/* Add other routes here */}
             </Routes>
         </>

@@ -328,3 +328,5 @@ span.skeleton::after {
     transform: translateX(100%);
   }
 }
+
+a {color: var(--text-color); text-decoration: none;}

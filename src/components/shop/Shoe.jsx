@@ -3,6 +3,8 @@ import noImageFound from '../../assets/images/no-image-found1.png'
 import { useMemo } from 'react';
 import {SkeletonCard} from '../Skeleton/SotdSkeleton'
 import ShopCards from './ShopCards'
+import { Link } from "react-router-dom";
+import {getData} from '../../api/getData.js'
 
 
 export default function Shoe(props) {
@@ -51,7 +53,15 @@ export default function Shoe(props) {
         <div>
             <div className={`horizontal-flexbox ${styles.shopSectionName}`}>
                 <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Similar Products</h5>
-                <p className={`pointer`}>View More →</p>
+                <Link to={`../search/${selectedShoe?.shoeName.split(' ', 3).join(' ')}/1`}
+                    onClick={async() => {
+                        let results = await getData('search', selectedShoe?.shoeName.split(' ', 3).join(' '));
+                        results = results.data
+                        props.setSearchThis(`similar, ${selectedShoe?.shoeName || selectedShoe?.title}`)
+                        props.setSearchResults(results);
+                    }} style={{ textDecoration: 'none' }}>
+                    <p className={`pointer`} >View More →</p>
+                </Link>
             </div>
             <div className={styles.shopGrid}>
                 {props.searchResults && props.displaySimilar
