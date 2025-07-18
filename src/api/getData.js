@@ -11,14 +11,14 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
             const response = await fetch(url, options);
                 if (!response.ok) {
                 const errorBody = await response.text(); // try to get error response as text
-                throw new Error(`HTTP ${response.status}: ${response.statusText} — ${errorBody}`);
+                throw new Error(`HTTP ${response.status}: ${response.statusText} — ${errorBody} ${url}`);
             }
             const result = await response.json();
             // if (result.status ==='error') {console.log(result)}
             return result
         } catch (error) {
             console.error(error);
-            return { error: true, message: error.message, status: 'error' };
+            return { error: true, message: error.message, status: 'error'};
         }
     }
 

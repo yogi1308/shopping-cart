@@ -44,6 +44,7 @@ export default function MainApp() {
   const [nike, setNike] = useState('')
   const [addidas, setaddidas] = useState('')
   const [jordan, setjordan] = useState('')
+  const [nb, setnb] = useState('')
   useEffect(() => {
     localStorage.setItem('mostPopular', JSON.stringify(mostPopular))
   }, [mostPopular])
@@ -56,19 +57,37 @@ export default function MainApp() {
 
         console.log('nike')
         const nikeData = await getData('search', 'Nike')
-        setNike(nikeData.data?.products)
-        if(nikeData.status === 'error' && nike === undefined) {console.log(nikeData.status); setNike(nikeData.status)}
+        if(nikeData.status === 'error' && (nike?.length === 0  || nike === undefined || nike === 'error')) {console.log(nikeData.status, nike); setNike(nikeData.status)}
+        else if(nikeData.status === 'success') {setNike(nikeData.data.products)}
+        console.log(nikeData.status, nikeData)
 
         console.log('addidas')
         const addidasData = await getData('search', 'addidas')
-        setaddidas(addidasData.data?.products)
-        if(addidasData.status === 'error') {console.log(addidasData.status); setaddidas(addidasData.status)}
+        if(addidasData.status === 'error' && (addidas?.length === 0 || addidas === undefined || addidas === 'error')) {console.log(addidasData.status, addidas); setaddidas(addidasData.status)}
+        else if(addidasData.status === 'success') {setaddidas(addidasData.data.products)}
+        console.log(addidasData.status, addidasData)
 
         console.log('jordan')
         const jordanData = await getData('search', 'jordan')
-        setjordan(jordanData.data?.products)
-        if(jordanData.status === 'error' && jordan === undefined) {console.log(jordanData.status); setjordan(jordanData.status)}
+        if(jordanData.status === 'error' && (jordan?.length === 0 || jordan === undefined || jordan === 'error')) {console.log(jordanData.status, jordan); setjordan(jordanData.status)}
+        else if(jordanData.status === 'success') {setjordan(jordanData.data.products)}
+        console.log(jordanData.status, jordanData)
+
+        console.log('nb')
+        const nbData = await getData('search', 'new balance')
+        if(nbData.status === 'error' && (nb?.length === 0 || nb === undefined || nb === 'error')) {console.log(nbData.status, nb); setnb(nbData.status)}
+        else if(nbData.status === 'success') {setnb(nbData.data.products)}
+        console.log(nbData.status, nbData)
         return mostPopularData
+
+        // const nbData = await getData('search', 'new balance')
+        // if(nbData.status === 'error' && (nb?.length === 0 || nb === undefined || nb === 'error')) {console.log(nbData.status, nb); setnb(nbData.status)}
+        // else if(nbData.status === 'succcess') {setnb(nbData.data?.products)}
+        // console.log(nbData)
+        // setnb(nbData.data?.products)
+        // console.log(nb)
+        // else if(nb.length > 0) {setnb(nbData)}
+        // return mostPopularData
       }
       fetchMostPopular()
     }
@@ -143,7 +162,7 @@ export default function MainApp() {
           setLoading={setLoading}
           setCart={setCart}
           cart={cart}
-          nike={nike} addidas={addidas} jordan={jordan}
+          nike={nike} addidas={addidas} jordan={jordan} nb={nb}
         />}
         {(!apiError && showCart) && <Cart cart={cart} setCart={setCart} setShowCart={setShowCart} setSelectedShoe={setSelectedShoe} />}
         {apiError && (apiSike ? <Sike setSike={setSike} setReal={setReal} /> : apiReal ? <Real setApiError={setApiError} setReal={setReal} /> :<ApiErrorPage setApiError={setApiError} setSike={setSike}/>)}
