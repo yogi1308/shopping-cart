@@ -53,8 +53,7 @@ export function Real(props) {
         <div className={`vertical-flexbox ${styles.errorContainer}`}>
             <div className={`big-text biggest-font-weight`}>BUT FOR REAL</div>
             <div className={`biggest-font-weight`}>It wasn't me. The API responded with an ERROR. BLAME HIM!</div>
-            {/* <div className={`${styles.gif}`} style={{backgroundImage: `url(${gif})`}} ></div> */}
-            <div className={`${styles.imgCont}`}>
+            <div className={`vertical-flexbox ${styles.imgCont}`}>
                 <div className={`${styles.appear}`}>Anyway Here's a randomly generated gif. Hope you find it funny</div>
                 <img src={`${gif}`} className={`${styles.gif}`} alt='DAMN AN ERROR HERE TOO...SMH...BAD LUCK' />
             </div>

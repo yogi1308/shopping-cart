@@ -31,7 +31,9 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
 
     if (getThis === 'search') {
         const url = `https://sneaker-database-stockx.p.rapidapi.com/sg/search?query=${searchThis}&page=${page}`
-        return fetchData(url)
+        console.log('ran')
+        const res = await fetchData(url)
+        return res
     }
     if(getThis === 'similar') {
         const url = `https://sneaker-database-stockx.p.rapidapi.com/getproducts?keywords='${searchThis}'`
