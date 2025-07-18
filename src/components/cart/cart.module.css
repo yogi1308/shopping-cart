@@ -40,6 +40,9 @@ html.dark .cartItem:hover{
 .itemImgContainer {
     max-width: 30%;
     position: relative;
+    background-color: var(--primary-color);
+    padding: 0px;
+    border: 0px;
 }
 
 .itemImgContainer::after {
@@ -75,4 +78,12 @@ html.dark .cartItem:hover{
 .cartItemInfoContainer {
     justify-content: space-between;
     flex-grow: 2;
+}
+
+.deleteCartItem {
+    transition: all 0.3s ease;
+}
+
+.deleteCartItem:hover {
+    transform: scale(1.2)
 }
