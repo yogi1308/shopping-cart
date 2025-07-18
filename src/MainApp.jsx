@@ -17,7 +17,11 @@ export default function MainApp() {
   const [apiError, setApiError] = useState(false)
   const [apiSike, setSike] = useState(false)
   const [apiReal, setReal] = useState(false)
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(() => {
+    // Load from localStorage on initial render
+    const storedCart = localStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
   const [showCart, setShowCart] = useState(false)
   useEffect(() => {
     if (theme === '') {setTheme(localStorage?.getItem('theme')); return}
@@ -88,12 +92,13 @@ export default function MainApp() {
   }, [location.pathname, apiError]);
 
   useEffect(() => {
-    console.log(cart)
-    let totalItems = 0;
-    if (cart.length >= 0) {cart?.map((obj) => totalItems += obj.count)}
-    if (totalItems === 0 || totalItems.length === 0) {document.querySelector('span.cart').setAttribute('data-content', "-");}
-    else {document.querySelector('span.cart').setAttribute('data-content', totalItems)}
-  }, [cart])
+    localStorage.setItem('cart', JSON.stringify(cart));
+    const totalItems = cart.reduce((sum, item) => sum + item.count, 0);
+    const badge = document.querySelector('span.cart');
+    if (badge) {
+      badge.setAttribute('data-content', totalItems > 0 ? totalItems.toString() : "-");
+    }
+  }, [cart]);
 
   useEffect(() => {
     const root = document.querySelector('#root');

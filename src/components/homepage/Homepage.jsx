@@ -19,7 +19,7 @@ export default function Homepage(props) {
                             <Link to={`product/${encodeURIComponent(props.sotd.sotdName)}`} onClick={() => localStorage.setItem('selectedShoe', props.sotd.sotdAllData)} ><button className="avg-button pointer">Check This Out</button></Link>
                         </div>
                     </div>
-                    <div className="sneaker-otd-image pointer"><img className='sneaker-otd-img' src={props.sotd?.sotdImg || props.sotd?.featured_image || noImageFound} alt="" srcset="" /></div>
+                    <div className="sneaker-otd-image pointer"><Link to={`product/${encodeURIComponent(props.sotd.sotdName)}`} onClick={() => localStorage.setItem('selectedShoe', props.sotd.sotdAllData)}><img className='sneaker-otd-img' src={props.sotd?.sotdImg || props.sotd?.featured_image || noImageFound} alt="" srcset="" /></Link></div>
                 </div>
             </div>)}
             <div className="more-info-cards horizontal-flexbox">

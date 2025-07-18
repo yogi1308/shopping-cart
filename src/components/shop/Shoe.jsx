@@ -5,9 +5,11 @@ import {SkeletonCard} from '../Skeleton/SotdSkeleton'
 import ShopCards from './ShopCards'
 import { Link } from "react-router-dom";
 import {getData} from '../../api/getData.js'
+import { useRef } from 'react';
 
 
 export default function Shoe(props) {
+    const sizesRef = useRef(null);
     function stripHtml(html) {
         return html ? html.replace(/<[^>]*>?/gm, '') : '';
     }
@@ -40,8 +42,8 @@ export default function Shoe(props) {
                             <option value="EU">EU</option>
                         </select>
                     </div>
-                    <div className={`${styles.sizes} horizontal-flexbox`}>
-                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                    <div className={`${styles.sizes} horizontal-flexbox`} ref={sizesRef}>
+                        {Array.from({ length: 24 }).map((_, idx) => <ShoeSize key={idx} size={idx + 1} sizesRef={sizesRef} />)}
                     </div>
                 </div>
                 <div className={`${styles.addToCart} horizontal-flexbox`}>
@@ -52,7 +54,7 @@ export default function Shoe(props) {
                         const value = Number(document.querySelector('input.number').value);
                         document.querySelector('input.number').value = 1
                         props.setCart(prev => { const index = prev.findIndex(obj => obj.item === selectedShoe); if (index !== -1) {return prev.map((obj, idx) => idx === index ? {...obj, count: value} : obj)} else {return [...prev, { item: selectedShoe, count: value, name: selectedShoe?.shoeName || selectedShoe?.title, img: selectedShoe?.thumbnail || selectedShoe?.featured_image || noImageFound, price: selectedShoe?.retailPrice || selectedShoe?.lowestResellPrice?.goat || selectedShoe?.lowestResellPrice?.stockX || selectedShoe?.lowestResellPrice?.flightClub || selectedShoe?.lowestResellPrice?.stadiumGoods || selectedShoe?.price}];}})
-                    }} >Add To Cart ↗</button>
+                    }} >{'Add To Cart ↗'}</button>
                 </div>
             </div>
         </div>
@@ -78,4 +80,22 @@ export default function Shoe(props) {
         </ div>
         </>
     )
+}
+
+function ShoeSize(props) {
+    const { size, sizesRef } = props;
+    return (
+        <span
+            className={`${styles.sizeSpan}`}
+            onClick={(e) => {
+                if (sizesRef.current) {
+                    sizesRef.current.querySelectorAll('span').forEach((span) =>
+                        span.classList.remove(styles.sizeSelected)
+                    );
+                }
+                e.target.classList.add(styles.sizeSelected);
+            }}>
+            {size}
+        </span>
+    );
 }
