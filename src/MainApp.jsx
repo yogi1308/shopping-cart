@@ -121,7 +121,7 @@ export default function MainApp() {
           setCart={setCart}
           cart={cart}
         />}
-        {(!apiError && showCart) && <Cart cart={cart} setShowCart={setShowCart} />}
+        {(!apiError && showCart) && <Cart cart={cart} setShowCart={setShowCart} setSelectedShoe={setSelectedShoe} />}
         {apiError && (apiSike ? <Sike setSike={setSike} setReal={setReal} /> : apiReal ? <Real setApiError={setApiError} setReal={setReal} /> :<ApiErrorPage setApiError={setApiError} setSike={setSike}/>)}
       </>
   );

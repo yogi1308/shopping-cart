@@ -27,10 +27,14 @@
     margin: 1rem;
     margin-bottom: 0px;
     padding-bottom: 1rem;
-    border-bottom: 1.5px solid var(--text-color);
     border-radius: 5px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    background-color: var(--primary-color);
+    padding: 1rem 0.5rem;
+    transition: all 0.3s ease;
+}
+
+html.dark .cartItem:hover{
+    background-color: #0d0f12;
 }
 
 .itemImgContainer {
@@ -60,11 +64,12 @@
 .cartItemPrice {align-self: flex-start;}
 
 .totalCart {
-    width: 100%;
+    width: calc(100% - 2rem);
     justify-content: space-between;
     align-items: flex-end;
-    padding: 1rem;
+    margin: 1rem;
     padding-top: 0px;
+    border-top: 1.5px solid var(--text-color);
 }
 
 .cartItemInfoContainer {
