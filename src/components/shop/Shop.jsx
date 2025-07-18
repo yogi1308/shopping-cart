@@ -89,6 +89,36 @@ export default function Shop(props) {
                 )}
                 </div>
             </div>
+            <div>
+                <div className={`horizontal-flexbox ${styles.shopSectionName}`}>
+                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`} >Jordan</h5>
+                    <Link to={`../search/Jordan/1`}
+                    onClick={async() => {
+                        props.setLoading(true)
+                        props.setSearchThis(`Jordan`)
+                        let results = await getData('search', 'Jordan', '1', 200);
+                        console.log(results)
+                        if(results.status === 'error') {props.setApiError(true)} else {props.setApiError(false)}
+                        console.log(results)
+                        props.setSearchResults(results);
+                        props.setLoading(false)
+                    }}>
+                        <p className={`pointer`}>View More →</p>
+                    </Link>
+                </div>
+                <div className={styles.shopGrid}>
+                {props.jordan && props.jordan === 'error' ? ( <p>An error occurred while fetching data.</p>
+                ) : (
+                    Array.isArray(props.jordan) ? (
+                    props.jordan.map((shoe) => (
+                        <ShopCards key={shoe._id} shoe={shoe} setSelectedShoe={props.setSelectedShoe} />
+                    ))
+                    ) : (
+                    Array.from({ length: 14 }).map((_, idx) => <SkeletonCard key={idx} />)
+                    )
+                )}
+                </div>
+            </div>
         </div>
     )
 }

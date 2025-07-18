@@ -43,6 +43,7 @@ export default function MainApp() {
   const [mostPopular, setMostPopular] = useState('')
   const [nike, setNike] = useState('')
   const [addidas, setaddidas] = useState('')
+  const [jordan, setjordan] = useState('')
   useEffect(() => {
     localStorage.setItem('mostPopular', JSON.stringify(mostPopular))
   }, [mostPopular])
@@ -52,10 +53,21 @@ export default function MainApp() {
       async function fetchMostPopular() {
         const mostPopularData = await getData('mostPopular')
         setMostPopular(mostPopularData)
+
+        console.log('nike')
         const nikeData = await getData('search', 'Nike')
-        setNike(nikeData.data?.products || nikeData.status)
+        setNike(nikeData.data?.products)
+        if(nikeData.status === 'error' && nike === undefined) {console.log(nikeData.status); setNike(nikeData.status)}
+
+        console.log('addidas')
         const addidasData = await getData('search', 'addidas')
-        setaddidas(addidasData.data?.products || addidasData.status)
+        setaddidas(addidasData.data?.products)
+        if(addidasData.status === 'error') {console.log(addidasData.status); setaddidas(addidasData.status)}
+
+        console.log('jordan')
+        const jordanData = await getData('search', 'jordan')
+        setjordan(jordanData.data?.products)
+        if(jordanData.status === 'error' && jordan === undefined) {console.log(jordanData.status); setjordan(jordanData.status)}
         return mostPopularData
       }
       fetchMostPopular()
@@ -131,7 +143,7 @@ export default function MainApp() {
           setLoading={setLoading}
           setCart={setCart}
           cart={cart}
-          nike={nike} addidas={addidas}
+          nike={nike} addidas={addidas} jordan={jordan}
         />}
         {(!apiError && showCart) && <Cart cart={cart} setCart={setCart} setShowCart={setShowCart} setSelectedShoe={setSelectedShoe} />}
         {apiError && (apiSike ? <Sike setSike={setSike} setReal={setReal} /> : apiReal ? <Real setApiError={setApiError} setReal={setReal} /> :<ApiErrorPage setApiError={setApiError} setSike={setSike}/>)}

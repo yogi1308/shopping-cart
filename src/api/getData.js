@@ -9,12 +9,16 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
     async function fetchData(url) {
         try {
             const response = await fetch(url, options);
+                if (!response.ok) {
+                const errorBody = await response.text(); // try to get error response as text
+                throw new Error(`HTTP ${response.status}: ${response.statusText} — ${errorBody}`);
+            }
             const result = await response.json();
-            if (result.status ==='error') {console.log(result)}
+            // if (result.status ==='error') {console.log(result)}
             return result
         } catch (error) {
             console.error(error);
-            return error
+            return { error: true, message: error.message, status: 'error' };
         }
     }
 
@@ -31,7 +35,6 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
 
     if (getThis === 'search') {
         const url = `https://sneaker-database-stockx.p.rapidapi.com/sg/search?query=${searchThis}&page=${page}`
-        console.log('ran')
         const res = await fetchData(url)
         return res
     }
