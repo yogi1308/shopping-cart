@@ -365,3 +365,9 @@ html.dark .cartContainer {
     transform: translateX(200%);
   }
 }
+
+@media (max-width: 800px) {
+    .cartContainer {
+        width: 100vw;
+    }
+}

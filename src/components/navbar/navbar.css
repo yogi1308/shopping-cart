@@ -82,3 +82,23 @@ html .theme:hover {
 .name-and-logo {
     gap: 0.5rem;
 }
+
+@media (max-width: 800px) {
+    .icons {gap: 0.5rem;}
+    .icons > * {min-width: 2rem;}
+    .name-and-logo > svg {display: none;}
+}
+
+@media (max-width: 660px) {
+    .login {display: none;}
+}
+
+@media (max-width: 570px) {
+    .name-and-logo {display: none;}
+    nav {justify-content: center;}
+    .searchbox ~ div.horizontal-flexbox {display: none;}
+}
+
+@media (max-width: 410px) {
+    .login {padding: 0.5rem 1rem;}
+}

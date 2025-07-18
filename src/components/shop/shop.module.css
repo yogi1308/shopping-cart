@@ -120,6 +120,13 @@ option {
     padding-top: 0.5rem;
 }
 
+.searchGrid > * {
+  width: 100%; /* optional but helpful */
+  min-width: 0; /* prevents overflow from inner content */
+  min-height: 0px;
+  max-width: 100%;
+}
+
 .loadContainer { position: relative; }
 
 .dots {
@@ -164,4 +171,37 @@ option {
 
 .loadBottom {
     text-align: center;
+}
+
+@media (max-width: 800px) {
+    .shopGrid {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        grid-template-rows: repeat(2, minmax(min-content, 1fr));
+    }
+    .card {min-width: 10rem;}
+    .shopGrid > p {overflow-wrap: anywhere;}
+    .searchGrid {grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));}
+    .searchGrid > .card {min-width: 5rem;}
+}
+
+@media (max-width: 650px) {
+    .shoe {
+        flex-direction: column;
+    }
+    .shoeImg {max-width: 100%;}
+}
+
+@media (max-width: 550px) {
+    .shopGrid {
+        grid-template-columns: repeat(auto-fit, minmax(8rem, fit-content));
+        grid-template-rows: repeat(2, minmax(8rem, fit-content));
+    }
+    .card {min-width: 8rem;}
+}
+
+@media (max-width: 420px) {
+    .shoe {
+        margin: 1rem;
+    }
+    .shoeInfo {max-width: 100%;}
 }

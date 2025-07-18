@@ -58,7 +58,7 @@ export default function App(props) {
         <>
             <Routes>
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
-                <Route path="/shop" element={<Shop nike={props.nike} nb={props.nb} addidas={props.addidas} jordan={props.jordan} setApiError={props.setApiError} setLoading={props.setLoading} searchResults={props.searchResults} setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
+                <Route path="/shop" element={<Shop asics={props.asics} nike={props.nike} nb={props.nb} addidas={props.addidas} jordan={props.jordan} setApiError={props.setApiError} setLoading={props.setLoading} searchResults={props.searchResults} setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
                 <Route path="/product/:shoe" 
                 element={<Shoe cart={props.cart} setCart={props.setCart} setApiError={props.setApiError} searchResults={props.searchResults} 
                 displaySimilar={props.displaySimilar} setSelectedShoe={props.setSelectedShoe} selectedShoe={props.selectedShoe}

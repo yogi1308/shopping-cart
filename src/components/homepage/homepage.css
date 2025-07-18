@@ -40,6 +40,10 @@
     align-items: stretch;
 }
 
+.cta > button {
+    height: 100%;
+}
+
 .more-info {
     background-color: var(--secondary-color);
     border: 1.5px solid var(--text-color);
@@ -70,4 +74,26 @@
     border-radius: 10px;
     z-index: -1;
     border: 1.5px solid var(--text-color);
+}
+
+@media (max-width: 650px) {
+    div.card {
+        flex-direction: column-reverse;
+    }
+    .card-text.vertical-flexbox {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 460px) {
+    div.sneaker-otd.vertical-flexbox {
+        margin: 1rem;
+    }
+    .card {padding: 1rem;}
+    .more-info-cards.horizontal-flexbox {flex-direction: column; margin: 1rem;}
+}
+
+@media (max-width: 380px) {
+    .sneaker-otd-image::after {background-color: transparent; border: 0px;}
 }

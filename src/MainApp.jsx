@@ -45,6 +45,7 @@ export default function MainApp() {
   const [addidas, setaddidas] = useState('')
   const [jordan, setjordan] = useState('')
   const [nb, setnb] = useState('')
+  const [asics, setasics] = useState('')
   useEffect(() => {
     localStorage.setItem('mostPopular', JSON.stringify(mostPopular))
   }, [mostPopular])
@@ -86,6 +87,14 @@ export default function MainApp() {
         if(nbData.status === 'error' && (nb?.length === 0 || nb === undefined || nb === 'error')) {console.log(nbData.status, nb); setnb(nbData.status)}
         else if(nbData.status === 'success') {setnb(nbData.data.products)}
         console.log(nbData.status, nbData)
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        console.log('asics')
+        const asicsData = await getData('search', 'Asics')
+        if(asicsData.status === 'error' && (asics?.length === 0 || asics === undefined || asics === 'error')) {console.log(asicsData.status, nb); setasics(asicsData.status)}
+        else if(asicsData.status === 'success') {setasics(asicsData.data.products)}
+        console.log(asicsData.status, asicsData)
         return mostPopularData
       }
       fetchMostPopular()
@@ -164,7 +173,7 @@ export default function MainApp() {
           setLoading={setLoading}
           setCart={setCart}
           cart={cart}
-          nike={nike} addidas={addidas} jordan={jordan} nb={nb}
+          nike={nike} addidas={addidas} jordan={jordan} nb={nb} asics={asics}
         />}
         {(!apiError && showCart) && <Cart cart={cart} setCart={setCart} setShowCart={setShowCart} setSelectedShoe={setSelectedShoe} />}
         {apiError && (apiSike ? <Sike setSike={setSike} setReal={setReal} /> : apiReal ? <Real setApiError={setApiError} setReal={setReal} /> :<ApiErrorPage setApiError={setApiError} setSike={setSike}/>)}

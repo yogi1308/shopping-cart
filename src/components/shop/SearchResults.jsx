@@ -40,29 +40,54 @@ export function SearchResults(props) {
         const value = props.searchThis
         navigate(`/search/${encodeURIComponent(value)}/${thisPage}`);
         let results = await getData('search', value, thisPage);
+        if(results.status === 'error') {console.log('error'); props.setApiError(true); return} else {props.setApiError(false)}
         props.setSearchResults(results.data);
         console.log(results)
     }
     return(
         <div>
             <div className={`${styles.shopSectionName}`}>
-                {props.searchResults?.query?.includes('More From') || props.searchThis.includes('More') ? (
-                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
-                        {props.searchResults?.query}
-                    </h5>
-                    ) : props.searchThis.includes('Popular') || props.searchResults?.query?.includes('popular') ? (
-                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
-                        Most Popular
-                    </h5>
-                    ) : props.searchThis.includes('similar') || props.searchResults?.query?.includes('similar') || props.searchThis.includes('%') || props.searchResults?.query?.includes('%') ? (
-                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
-                        Similar To: "{props.searchThis.split(', ').at(1)}"
-                    </h5>
-                    ) : (
-                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
-                        Search Results for: "{props.searchResults?.query || props.searchThis}"
-                    </h5>
-                    )}
+                {(() => {
+                    const query = props.searchResults?.query?.toLowerCase() || '';
+                    const searchThis = props.searchThis?.toLowerCase() || '';
+
+                    if (query.includes('more') || searchThis.includes('more')) {
+                        return (
+                            <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                                {props.searchResults?.query}
+                            </h5>
+                        );
+                    }
+
+                    if (query.includes('popular') || searchThis.includes('popular')) {
+                        return (
+                            <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                                Most Popular
+                            </h5>
+                        );
+                    }
+
+                    if (
+                        query.includes('similar') ||
+                        searchThis.includes('similar') ||
+                        query.includes('%') ||
+                        searchThis.includes('%')
+                    ) {
+                        const secondTerm = props.searchThis?.split(', ')?.[1] || '';
+                        return (
+                            <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                                Similar To: "{secondTerm}"
+                            </h5>
+                        );
+                    }
+
+                    // Default fallback
+                    return (
+                        <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                            Search Results for: "{props.searchResults?.query || props.searchThis}"
+                        </h5>
+                    );
+                })()}
                 {props.loading && <p className={`third-biggest-font-size second-biggest-font-weight ${styles.loadContainer}`}>
                     Loading
                     <span className={styles.dots}>

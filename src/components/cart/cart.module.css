@@ -87,3 +87,9 @@ html.dark .cartItem:hover{
 .deleteCartItem:hover {
     transform: scale(1.2)
 }
+
+@media (max-width: 300px) {
+    .cartItemInfoContainer > * {
+        font-size: 0.5rem;
+    }
+}
