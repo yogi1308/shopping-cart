@@ -55,11 +55,15 @@ export default function MainApp() {
         const mostPopularData = await getData('mostPopular')
         setMostPopular(mostPopularData)
 
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         console.log('nike')
         const nikeData = await getData('search', 'Nike')
         if(nikeData.status === 'error' && (nike?.length === 0  || nike === undefined || nike === 'error')) {console.log(nikeData.status, nike); setNike(nikeData.status)}
         else if(nikeData.status === 'success') {setNike(nikeData.data.products)}
         console.log(nikeData.status, nikeData)
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         console.log('addidas')
         const addidasData = await getData('search', 'addidas')
@@ -67,11 +71,15 @@ export default function MainApp() {
         else if(addidasData.status === 'success') {setaddidas(addidasData.data.products)}
         console.log(addidasData.status, addidasData)
 
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         console.log('jordan')
         const jordanData = await getData('search', 'jordan')
         if(jordanData.status === 'error' && (jordan?.length === 0 || jordan === undefined || jordan === 'error')) {console.log(jordanData.status, jordan); setjordan(jordanData.status)}
         else if(jordanData.status === 'success') {setjordan(jordanData.data.products)}
         console.log(jordanData.status, jordanData)
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         console.log('nb')
         const nbData = await getData('search', 'new balance')
@@ -79,15 +87,6 @@ export default function MainApp() {
         else if(nbData.status === 'success') {setnb(nbData.data.products)}
         console.log(nbData.status, nbData)
         return mostPopularData
-
-        // const nbData = await getData('search', 'new balance')
-        // if(nbData.status === 'error' && (nb?.length === 0 || nb === undefined || nb === 'error')) {console.log(nbData.status, nb); setnb(nbData.status)}
-        // else if(nbData.status === 'succcess') {setnb(nbData.data?.products)}
-        // console.log(nbData)
-        // setnb(nbData.data?.products)
-        // console.log(nb)
-        // else if(nb.length > 0) {setnb(nbData)}
-        // return mostPopularData
       }
       fetchMostPopular()
     }
