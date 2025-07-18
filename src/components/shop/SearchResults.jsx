@@ -46,11 +46,23 @@ export function SearchResults(props) {
     return(
         <div>
             <div className={`${styles.shopSectionName}`}>
-                {props.searchThis.includes('Popular') || props.searchResults?.query?.includes('popular')
-                    ? <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>Most Popular</h5>
-                    : props.searchThis.includes('similar') || props.searchResults?.query?.includes('similar') || props.searchThis.includes('%') || props.searchResults?.query?.includes('%')
-                        ? <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>Similar To: "{props.searchThis.split(', ').at(1)}"</h5>
-                        : <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>Search Results for: "{props.searchResults?.query || props.searchThis}"</h5>}
+                {props.searchResults?.query?.includes('More From') || props.searchThis.includes('More') ? (
+                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                        {props.searchResults?.query}
+                    </h5>
+                    ) : props.searchThis.includes('Popular') || props.searchResults?.query?.includes('popular') ? (
+                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                        Most Popular
+                    </h5>
+                    ) : props.searchThis.includes('similar') || props.searchResults?.query?.includes('similar') || props.searchThis.includes('%') || props.searchResults?.query?.includes('%') ? (
+                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                        Similar To: "{props.searchThis.split(', ').at(1)}"
+                    </h5>
+                    ) : (
+                    <h5 className={`third-biggest-font-size second-biggest-font-weight ${styles.shopSection}`}>
+                        Search Results for: "{props.searchResults?.query || props.searchThis}"
+                    </h5>
+                    )}
                 {props.loading && <p className={`third-biggest-font-size second-biggest-font-weight ${styles.loadContainer}`}>
                     Loading
                     <span className={styles.dots}>

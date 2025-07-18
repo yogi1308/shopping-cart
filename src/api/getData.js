@@ -22,10 +22,16 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
         }
     }
 
+    if (getThis.includes('More From')) {
+        const url = `https://sneaker-database-stockx.p.rapidapi.com/sg/search?query=${searchThis.split(' ').slice(2).join(' ')}&page=${page}`
+        const res = await fetchData(url)
+        let alteredQueryData = {...res, data: {...res.data, query: searchThis}}
+        return alteredQueryData
+    }
+
     if (getThis === 'sotd') {
         const url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=1';
         return fetchData(url)
-
     }
 
     if (getThis === 'mostPopular') {

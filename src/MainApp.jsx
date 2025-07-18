@@ -102,6 +102,7 @@ export default function MainApp() {
     }
     else if (location.pathname.includes('/search')) {
       if (location.pathname.includes('popular')) {return}
+      else if (location.pathname.includes('More From')) {return}
         async function fetchData() {
           let url = location.pathname.split('/')
           setSearchThis(url[2])
@@ -141,6 +142,8 @@ export default function MainApp() {
     if (showCart) {root.classList.add('overlay')}
     else {root.classList.remove('overlay')}
   }, [showCart]);
+
+  useEffect(() => {if (apiError) {console.log('error should be displayed')}}, [apiError])
 
 
   return (
