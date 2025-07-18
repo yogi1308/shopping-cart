@@ -60,7 +60,7 @@ export default function App(props) {
                 <Route path="/" element={<Homepage sotd={sotd} setCurrPage={props.setCurrPage} />} />
                 <Route path="/shop" element={<Shop setApiError={props.setApiError} setLoading={props.setLoading} setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} mostPopular={props.mostPopular} setSelectedShoe={props.setSelectedShoe} />} />
                 <Route path="/product/:shoe" 
-                element={<Shoe setCart={props.setCart} setApiError={props.setApiError} searchResults={props.searchResults} 
+                element={<Shoe cart={props.cart} setCart={props.setCart} setApiError={props.setApiError} searchResults={props.searchResults} 
                 displaySimilar={props.displaySimilar} setSelectedShoe={props.setSelectedShoe} selectedShoe={props.selectedShoe}
                 setSearchResults={props.setSearchResults} setSearchThis={props.setSearchThis} />} errorElement='ApiErrorPage' />
 

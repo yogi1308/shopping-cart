@@ -5,7 +5,7 @@ import {SkeletonCard} from '../Skeleton/SotdSkeleton'
 import ShopCards from './ShopCards'
 import { Link } from "react-router-dom";
 import {getData} from '../../api/getData.js'
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 
 export default function Shoe(props) {
@@ -22,6 +22,17 @@ export default function Shoe(props) {
         catch {return {};}
     }, [props.selectedShoe]);
     const description = stripHtml(selectedShoe?.description) || 'No Product Description Found';
+
+    const [inputValue, setInputValue] = useState(1);
+    const [buttonLabel, setButtonLabel] = useState('Add To Cart');
+
+    useEffect(() => {
+    const existingItem = props.cart.find(obj => obj.item._id === selectedShoe._id || obj.item.shoeName === selectedShoe.shoeName);
+    if (existingItem) {
+        setInputValue(existingItem.count);
+        setButtonLabel('Already in Cart');
+    }
+    }, [selectedShoe, props.cart]);
  
     return(<>
         <div className={`${styles.shoe} horizontal-flexbox`}>
@@ -47,14 +58,47 @@ export default function Shoe(props) {
                     </div>
                 </div>
                 <div className={`${styles.addToCart} horizontal-flexbox`}>
-                    <div className={`${styles.number} horizontal-flexbox`}><span onClick={() => {if (document.querySelector('input.number').value === '1') {return} document.querySelector('input.number').value = Number(document.querySelector('input.number').value) - 1}}>-</span>
-                            <input className='number' min="1" type="number" defaultValue="1" placeholder='1' onChange={(e) => {e.target.value = Math.max(1, e.target.value)}} />
-                        <span onClick={() => {console.log(document.querySelector('input.number').value); document.querySelector('input.number').value = Number(document.querySelector('input.number').value) + 1}}>+</span></div>
-                    <button className="avg-button" onClick={() => {
+                    <div className={`${styles.number} horizontal-flexbox`}>
+                        <span onClick={() => {setInputValue(prev => Math.max(1, prev - 1)); const existing = props.cart.find(obj => obj.item._id === selectedShoe._id || obj.item.shoeName === selectedShoe.shoeName);
+                            if (existing) {
+                            setButtonLabel('Update Cart');
+                            } else {
+                            setButtonLabel('Add To Cart');
+                            }}}>-</span>
+                        <input
+                        className='number'
+                        min="1"
+                        type="number"
+                        value={inputValue}
+                        onChange={(e) => {
+                            const value = Math.max(1, Number(e.target.value));
+                            setInputValue(value);
+
+                            const existing = props.cart.find(obj => obj.item._id === selectedShoe._id || obj.item.shoeName === selectedShoe.shoeName);
+                            if (existing && existing.count !== value) {
+                            setButtonLabel('Update Cart');
+                            } else if (existing) {
+                            setButtonLabel('Already in Cart');
+                            } else {
+                            setButtonLabel('Add To Cart');
+                            }
+                        }}
+                        />
+                        <span onClick={() => {setInputValue(prev => prev + 1);const existing = props.cart.find(obj => obj.item._id === selectedShoe._id || obj.item.shoeName === selectedShoe.shoeName);
+                            if (existing) {
+                            setButtonLabel('Update Cart');
+                            } else {
+                            setButtonLabel('Add To Cart');
+                            }}}>+</span>
+                    </div>
+                    <button className="avg-button" onClick={() => {console.log(selectedShoe)
                         const value = Number(document.querySelector('input.number').value);
                         document.querySelector('input.number').value = 1
-                        props.setCart(prev => { const index = prev.findIndex(obj => obj.item === selectedShoe); if (index !== -1) {return prev.map((obj, idx) => idx === index ? {...obj, count: value} : obj)} else {return [...prev, { item: selectedShoe, count: value, name: selectedShoe?.shoeName || selectedShoe?.title, img: selectedShoe?.thumbnail || selectedShoe?.featured_image || noImageFound, price: selectedShoe?.retailPrice || selectedShoe?.lowestResellPrice?.goat || selectedShoe?.lowestResellPrice?.stockX || selectedShoe?.lowestResellPrice?.flightClub || selectedShoe?.lowestResellPrice?.stadiumGoods || selectedShoe?.price}];}})
-                    }} >{'Add To Cart ↗'}</button>
+                        props.setCart(prev => { const index = prev.findIndex(obj => obj.item._id === selectedShoe._id ||obj.item.shoeName === selectedShoe.shoeName); 
+                            if (index !== -1) {return prev.map((obj, idx) => idx === index ? {...obj, count: value} : obj)} else {return [...prev, { item: selectedShoe, count: value, name: selectedShoe?.shoeName || selectedShoe?.title, img: selectedShoe?.thumbnail || selectedShoe?.featured_image || noImageFound, price: selectedShoe?.retailPrice || selectedShoe?.lowestResellPrice?.goat || selectedShoe?.lowestResellPrice?.stockX || selectedShoe?.lowestResellPrice?.flightClub || selectedShoe?.lowestResellPrice?.stadiumGoods || selectedShoe?.price}];}})
+                            console.log(props.cart, selectedShoe)
+                        setButtonLabel('Already in Cart');
+                    }} >{buttonLabel + ' ↗'}</button>
                 </div>
             </div>
         </div>
