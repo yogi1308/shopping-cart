@@ -337,6 +337,10 @@ a {color: var(--text-color); text-decoration: none;}
   pointer-events: none;
 }
 
+#root > :not(.cartContainer) {
+  transition: opacity 0.5s ease;
+}
+
 .cartContainer{
     background-color: var(--primary-color);
     position: fixed;
@@ -349,8 +353,15 @@ a {color: var(--text-color); text-decoration: none;}
     padding-top: 2.5rem;
     gap: 0rem;
     overflow: auto;
+    animation: slide-in 0.3s ease 1 forwards;
 }
 
 html.dark .cartContainer {
   box-shadow: -10px 0px 20px 0px #6e616162;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(200%);
+  }
 }
