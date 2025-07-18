@@ -42,6 +42,7 @@ export default function MainApp() {
   const [currPage, setCurrPage] = useState('')
   const [mostPopular, setMostPopular] = useState('')
   const [nike, setNike] = useState('')
+  const [addidas, setaddidas] = useState('')
   useEffect(() => {
     localStorage.setItem('mostPopular', JSON.stringify(mostPopular))
   }, [mostPopular])
@@ -49,10 +50,12 @@ export default function MainApp() {
   useEffect(() => {
     if (currPage === 'shop') {
       async function fetchMostPopular() {
-        const nikeData = await getData('search', 'Nike')
-        setNike(nikeData.data?.products || nikeData.status)
         const mostPopularData = await getData('mostPopular')
         setMostPopular(mostPopularData)
+        const nikeData = await getData('search', 'Nike')
+        setNike(nikeData.data?.products || nikeData.status)
+        const addidasData = await getData('search', 'addidas')
+        setaddidas(addidasData.data?.products || addidasData.status)
         return mostPopularData
       }
       fetchMostPopular()
@@ -128,7 +131,7 @@ export default function MainApp() {
           setLoading={setLoading}
           setCart={setCart}
           cart={cart}
-          nike={nike}
+          nike={nike} addidas={addidas}
         />}
         {(!apiError && showCart) && <Cart cart={cart} setCart={setCart} setShowCart={setShowCart} setSelectedShoe={setSelectedShoe} />}
         {apiError && (apiSike ? <Sike setSike={setSike} setReal={setReal} /> : apiReal ? <Real setApiError={setApiError} setReal={setReal} /> :<ApiErrorPage setApiError={setApiError} setSike={setSike}/>)}
