@@ -53,7 +53,7 @@ export default function Navbar(props) {
                             props.setTheme(prev => prev === "🔆" ? "🌙" : "🔆");
                         }} >{props.theme}</span>
                     </div>
-                    <button className="login avg-button pointer">Login</button>
+                    <button className="login avg-button pointer" title='You FUCKING CLOWN this is a fake website' >Login</button>
                 </div>
             </nav>
         </>
