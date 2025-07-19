@@ -91,12 +91,12 @@ export default function Shoe(props) {
                             setButtonLabel('Add To Cart');
                             }}}>+</span>
                     </div>
-                    <button className="avg-button" onClick={() => {console.log(selectedShoe)
+                    <button className="avg-button" onClick={() => {
                         const value = Number(document.querySelector('input.number').value);
                         document.querySelector('input.number').value = 1
                         props.setCart(prev => { const index = prev.findIndex(obj => obj.item._id === selectedShoe._id ||obj.item.shoeName === selectedShoe.shoeName); 
                             if (index !== -1) {return prev.map((obj, idx) => idx === index ? {...obj, count: value} : obj)} else {return [...prev, { item: selectedShoe, count: value, name: selectedShoe?.shoeName || selectedShoe?.title, img: selectedShoe?.thumbnail || selectedShoe?.featured_image || noImageFound, price: selectedShoe?.retailPrice || selectedShoe?.lowestResellPrice?.goat || selectedShoe?.lowestResellPrice?.stockX || selectedShoe?.lowestResellPrice?.flightClub || selectedShoe?.lowestResellPrice?.stadiumGoods || selectedShoe?.price}];}})
-                            console.log(props.cart, selectedShoe)
+                            
                         setButtonLabel('Already in Cart');
                     }} >{buttonLabel + ' ↗'}</button>
                 </div>

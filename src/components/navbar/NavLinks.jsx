@@ -18,6 +18,7 @@ export function Searchbox(props) {
                 onKeyDown={async(e) => {
                     if (e.key === 'Enter') {
                         const value = document.querySelector('input.search').value;
+                        props.setSearchThis(value)
                         props.setShowSearch(false)
                         navigate(`/search/${encodeURIComponent(value)}/1`);
                         let results = await getData('search', value);
@@ -27,7 +28,7 @@ export function Searchbox(props) {
                     }
                 }} 
             />
-            <span className="close-search pointer" onClick={() => {props.setShowSearch(prev => !prev); console.log('click')}} >X</span>
+            <span className="close-search pointer" onClick={() => {props.setShowSearch(prev => !prev)}} >X</span>
         </ div>
     )
 }

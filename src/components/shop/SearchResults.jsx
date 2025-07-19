@@ -40,9 +40,9 @@ export function SearchResults(props) {
         const value = props.searchThis
         navigate(`/search/${encodeURIComponent(value)}/${thisPage}`);
         let results = await getData('search', value, thisPage);
-        if(results.status === 'error') {console.log('error'); props.setApiError(true); return} else {props.setApiError(false)}
-        props.setSearchResults(results.data);
-        console.log(results)
+        if(results.status === 'error') {props.setApiError(true); return} 
+        else {props.setApiError(false)}
+        props.setSearchResults(results.data);        
     }
     return(
         <div>

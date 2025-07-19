@@ -16,7 +16,7 @@ export default function Shop(props) {
                         props.setSearchThis(`Most Popular`)
                         let results = await getData('mostPopular', '', '', 200);
                         if(results.status === 'error') {props.setApiError(true)} else {props.setApiError(false)}
-                        console.log(results)
+                        
                         props.setSearchResults(results);
                         props.setLoading(false)
                     }}>
@@ -37,9 +37,7 @@ export default function Shop(props) {
                         props.setLoading(true)
                         props.setSearchThis(`More From Nike`)
                         let results = await getData('search', 'More from Nike', '1', 200);
-                        console.log(results)
-                        if(results.status === 'error') {console.log('error'); props.setApiError(true); return} else {props.setApiError(false)}
-                        console.log(results)
+                        if(results.status === 'error') {props.setApiError(true); return} else {props.setApiError(false)}
                         props.setSearchResults(results);
                         props.setLoading(false)
                     }}>
@@ -67,9 +65,9 @@ export default function Shop(props) {
                         props.setLoading(true)
                         props.setSearchThis(`More From Addidas`)
                         let results = await getData('search', 'More From Addidas', '1', 200);
-                        console.log(results)
-                        if(results.status === 'error') {console.log('error'); props.setApiError(true); return} else {props.setApiError(false)}
-                        console.log(results)
+                        
+                        if(results.status === 'error') {props.setApiError(true); return} else {props.setApiError(false)}
+                        
                         props.setSearchResults(results);
                         props.setLoading(false)
                     }}>
@@ -97,9 +95,9 @@ export default function Shop(props) {
                         props.setLoading(true)
                         props.setSearchThis(`More From Jordan`)
                         let results = await getData('search', 'More From Jordan', '1', 200);
-                        console.log(results)
-                        if(results.status === 'error') {console.log('error'); props.setApiError(true); return} else {props.setApiError(false)}
-                        console.log(results)
+                        
+                        if(results.status === 'error') {props.setApiError(true); return} else {props.setApiError(false)}
+                        
                         props.setSearchResults(results);
                         props.setLoading(false)
                     }}>
@@ -122,9 +120,9 @@ export default function Shop(props) {
                         props.setLoading(true)
                         props.setSearchThis(`More From New Balance`)
                         let results = await getData('search', 'More From New Balance', '1', 200);
-                        console.log(results)
-                        if(results.status === 'error') {console.log('error'); props.setApiError(true); return} else {props.setApiError(false)}
-                        console.log(results)
+                        
+                        if(results.status === 'error') {props.setApiError(true); return} else {props.setApiError(false)}
+                        
                         props.setSearchResults(results);
                         props.setLoading(false)
                     }}>
@@ -152,9 +150,9 @@ export default function Shop(props) {
                         props.setLoading(true)
                         props.setSearchThis(`More From Asics`)
                         let results = await getData('search', 'More From Asics', '1', 200);
-                        console.log(results)
-                        if(results.status === 'error') {console.log('error'); props.setApiError(true); return} else {props.setApiError(false)}
-                        console.log(results)
+                        
+                        if(results.status === 'error') {props.setApiError(true); return} else {props.setApiError(false)}
+                        
                         props.setSearchResults(results);
                         props.setLoading(false)
                     }}>

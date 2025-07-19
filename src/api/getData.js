@@ -14,7 +14,7 @@ export async function getData(getThis, searchThis, page = 1, limit = 20) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText} — ${errorBody} ${url}`);
             }
             const result = await response.json();
-            // if (result.status ==='error') {console.log(result)}
+            // if (result.status ==='error') {
             return result
         } catch (error) {
             console.error(error);
@@ -57,6 +57,6 @@ export async function getGif() {
     { mode: 'cors' }
   );
   const data = await response.json();
-  console.log('Fetched URL:', data.data.images.original.url);
+  
   return data.data.images.original.url; // Ensure this is returned
 }

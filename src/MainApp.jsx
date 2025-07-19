@@ -53,49 +53,47 @@ export default function MainApp() {
   useEffect(() => {
     if (currPage === 'shop') {
       async function fetchMostPopular() {
-        const mostPopularData = await getData('mostPopular')
-        setMostPopular(mostPopularData)
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (mostPopular?.length === 0  || mostPopular === undefined || mostPopular === 'error') {
+          const mostPopularData = await getData('mostPopular')
+          if(mostPopularData.status === 'error' && (mostPopular?.length === 0  || mostPopular === undefined || mostPopular === 'error')) {setMostPopular(mostPopularData.status)}
+          else {setMostPopular(mostPopularData)}
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
 
-        console.log('nike')
-        const nikeData = await getData('search', 'Nike')
-        if(nikeData.status === 'error' && (nike?.length === 0  || nike === undefined || nike === 'error')) {console.log(nikeData.status, nike); setNike(nikeData.status)}
-        else if(nikeData.status === 'success') {setNike(nikeData.data.products)}
-        console.log(nikeData.status, nikeData)
+        if (nike?.length === 0  || nike === undefined || nike === 'error') {
+          const nikeData = await getData('search', 'Nike')
+          if(nikeData.status === 'error' && (nike?.length === 0  || nike === undefined || nike === 'error')) {setNike(nikeData.status)}
+          else if(nikeData.status === 'success') {setNike(nikeData.data.products)}
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (addidas?.length === 0 || addidas === undefined || addidas === 'error') {
+          const addidasData = await getData('search', 'addidas')
+          if(addidasData.status === 'error' && (addidas?.length === 0 || addidas === undefined || addidas === 'error')) {setaddidas(addidasData.status)}
+          else if(addidasData.status === 'success') {setaddidas(addidasData.data.products)}
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
 
-        console.log('addidas')
-        const addidasData = await getData('search', 'addidas')
-        if(addidasData.status === 'error' && (addidas?.length === 0 || addidas === undefined || addidas === 'error')) {console.log(addidasData.status, addidas); setaddidas(addidasData.status)}
-        else if(addidasData.status === 'success') {setaddidas(addidasData.data.products)}
-        console.log(addidasData.status, addidasData)
+        if (jordan?.length === 0 || jordan === undefined || jordan === 'error') {
+          const jordanData = await getData('search', 'jordan')
+          if(jordanData.status === 'error' && (jordan?.length === 0 || jordan === undefined || jordan === 'error')) {setjordan(jordanData.status)}
+          else if(jordanData.status === 'success') {setjordan(jordanData.data.products)}
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (nb?.length === 0 || nb === undefined || nb === 'error') {
+          const nbData = await getData('search', 'new balance')
+          if(nbData.status === 'error' && (nb?.length === 0 || nb === undefined || nb === 'error')) {setnb(nbData.status)}
+          else if(nbData.status === 'success') {setnb(nbData.data.products)}
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
 
-        console.log('jordan')
-        const jordanData = await getData('search', 'jordan')
-        if(jordanData.status === 'error' && (jordan?.length === 0 || jordan === undefined || jordan === 'error')) {console.log(jordanData.status, jordan); setjordan(jordanData.status)}
-        else if(jordanData.status === 'success') {setjordan(jordanData.data.products)}
-        console.log(jordanData.status, jordanData)
-
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        console.log('nb')
-        const nbData = await getData('search', 'new balance')
-        if(nbData.status === 'error' && (nb?.length === 0 || nb === undefined || nb === 'error')) {console.log(nbData.status, nb); setnb(nbData.status)}
-        else if(nbData.status === 'success') {setnb(nbData.data.products)}
-        console.log(nbData.status, nbData)
-
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        console.log('asics')
-        const asicsData = await getData('search', 'Asics')
-        if(asicsData.status === 'error' && (asics?.length === 0 || asics === undefined || asics === 'error')) {console.log(asicsData.status, nb); setasics(asicsData.status)}
-        else if(asicsData.status === 'success') {setasics(asicsData.data.products)}
-        console.log(asicsData.status, asicsData)
-        return mostPopularData
+        if (asics?.length === 0 || asics === undefined || asics === 'error') {
+          const asicsData = await getData('search', 'Asics')
+          if(asicsData.status === 'error' && (asics?.length === 0 || asics === undefined || asics === 'error')) {setasics(asicsData.status)}
+          else if(asicsData.status === 'success') {setasics(asicsData.data.products)}
+        }
       }
       fetchMostPopular()
     }
@@ -114,7 +112,6 @@ export default function MainApp() {
       else if (location.pathname.includes('More From')) {return}
         async function fetchData() {
           let url = location.pathname.split('/')
-          setSearchThis(url[2])
           setLoading(true)
           let results = await getData('search', url[2], url[3]);
           results = results.data
@@ -157,7 +154,7 @@ export default function MainApp() {
 
   return (
       <>
-        {!apiError && <Navbar setShowCart={setShowCart} cart={cart} theme={theme} setApiError={setApiError} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />}
+        {!apiError && <Navbar setSearchThis={setSearchThis} setShowCart={setShowCart} cart={cart} theme={theme} setApiError={setApiError} setTheme={setTheme} setCurrPage={setCurrPage} setSearchResults={setSearchResults} />}
         {!apiError && <App 
           setCurrPage={setCurrPage} 
           mostPopular={mostPopular} 

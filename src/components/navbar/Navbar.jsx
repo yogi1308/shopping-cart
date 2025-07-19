@@ -16,6 +16,7 @@ export default function Navbar(props) {
             // If search is open, fetch and then close
             async function fetchData() {
                 const value = document.querySelector('input.search').value;
+                props.setSearchThis(value)
                 navigate(`/search/${encodeURIComponent(value)}/1`);
                 setShowSearch(false);
                 let results = await getData('search', value);
@@ -38,7 +39,7 @@ export default function Navbar(props) {
                     <h1 className='big-text biggest-font-weight' >StockXYZ</h1>
                 </div>
                 {!showSearch ? <NavLinks setApiError={props.setApiError} setCurrPage={props.setCurrPage} /> 
-                : <Searchbox setShowSearch={setShowSearch} setApiError={props.setApiError} setSearchResults={props.setSearchResults} />
+                : <Searchbox setSearchThis={props.setSearchThis} setShowSearch={setShowSearch} setApiError={props.setApiError} setSearchResults={props.setSearchResults} />
                 }
                 <div className="horizontal-flexbox">
                     <div className="icons horizontal-flexbox">

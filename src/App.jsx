@@ -36,7 +36,7 @@ export default function App(props) {
                     setSotd(sotdDataParsed)
                     localStorage.setItem('sotd', JSON.stringify(sotdDataParsed))
                 }
-                else {console.log('date not changed'); setSotd(JSON.parse(localStorage.getItem('sotd')));}
+                else {setSotd(JSON.parse(localStorage.getItem('sotd')));}
             }
             else {
                 const currentDate = new Date();

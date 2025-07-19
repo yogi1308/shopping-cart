@@ -39,7 +39,7 @@ export function Real(props) {
             try {
                 const url = await getGif();
                 setGif(url); // Update state with the GIF URL
-                console.log('GIF URL:', url);
+                
             } catch (error) {
                 console.error('Error fetching GIF:', error);
             }
